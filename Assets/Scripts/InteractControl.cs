@@ -2,18 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*written by: Alex Davis
+CS98 Project: Team Learnverse
+This script is the main controller for the interactable objects
+*/
 public class InteractControl : MonoBehaviour
 {
     public GameObject interactIcon;
 
     private void Start()
     {
-        interactIcon.SetActive(false);
+        interactIcon.SetActive(false); //sets the interactIcon's initial state to 'inactive' (invisible)
     }
     // Update is called once per frame
     void Update()
     {
-        //check for interaction on 'E' key press
+        //check for possible interaction and perform interaction on 'E' key press
         if(Input.GetKeyDown(KeyCode.E))
             CheckInteraction();
     }
@@ -32,7 +36,7 @@ public class InteractControl : MonoBehaviour
 
     private void CheckInteraction()
     {
-        RaycastHit[] hits = Physics.SphereCastAll(transform.position,2f,Vector3.forward,0f); //2m sphere of influence around character
+        RaycastHit[] hits = Physics.SphereCastAll(transform.position,3f,Vector3.forward,0f); //2m "sphere of influence" around character
 
         if(hits.Length > 0)
         {
@@ -41,7 +45,7 @@ public class InteractControl : MonoBehaviour
                 if(rc.transform.GetComponent<Interactable>())
                 {
                     rc.transform.GetComponent<Interactable>().Interact();
-                    return;
+                    return; //here, we use return in order to prevent multiple interactions at once (remove if we wish to implement AoE type interaction with any interactable object within range)
                 }
             }
         }

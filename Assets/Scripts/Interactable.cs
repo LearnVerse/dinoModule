@@ -1,4 +1,4 @@
-using UnityEngine;
+ using UnityEngine;
 
 //Inspired by Comp-3 Unity Tutorials: https://www.youtube.com/channel/UC26kmK523wCy9RziFrvhp7g
 
@@ -11,22 +11,31 @@ using UnityEngine;
 
 public abstract class Interactable : MonoBehaviour
 {     
-
+    // public GameObject interactIcon;
     public CapsuleCollider cap;
     Vector3 center = new Vector3(0f,0f,0f);
     private float radius = 2.5f;
     private float height = 3f;
     private int dir = 1;
 
+    public Canvas icon;
+    public GameObject box;
     void Start()
     {
+        box = GameObject.FindWithTag("Player");
+        if(box != null)        
+        {
+            Debug.Log("found the box");
+            icon = box.GetComponent<Canvas>();
+        }
         cap = cap.GetComponent<CapsuleCollider>();
-        Debug.Log("MADE IT HERE 1");
         cap.center = center;
         cap.radius = radius;
         cap.height = height;
         cap.direction = dir;
+        
         cap.isTrigger = true; //set the collider to always be active for the interactable object
+        // interactIcon = interactIcon.GetComponent<InteractControl>().GetGameObject();
     
     }
 

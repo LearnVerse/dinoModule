@@ -12,6 +12,7 @@ public class InteractControl : MonoBehaviour
 
     private void Start()
     {
+        interactIcon = Instantiate(interactIcon);       
         interactIcon.SetActive(false); //sets the interactIcon's initial state to 'inactive' (invisible)
     }
     // Update is called once per frame
@@ -50,5 +51,11 @@ public class InteractControl : MonoBehaviour
             }
         }
 
+    }
+
+    public GameObject GetGameObject()
+    {
+        Debug.Log("wahteifsay");
+        return interactIcon;
     }
 }

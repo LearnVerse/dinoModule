@@ -7,13 +7,14 @@ CS98 Project: Team Learnverse
 This script is the main controller for the interactable objects
 */
 public class InteractControl : MonoBehaviour
+//attach ui elements to player model
 {
-    public GameObject interactIcon;
+    private Canvas interactIcon;
 
     private void Start()
     {
-        interactIcon = Instantiate(interactIcon);       
-        interactIcon.SetActive(false); //sets the interactIcon's initial state to 'inactive' (invisible)
+        interactIcon = gameObject.GetComponentInChildren<Canvas>();       
+        interactIcon.enabled = false; //sets the interactIcon's initial state to 'inactive' (invisible)
     }
     // Update is called once per frame
     void Update()
@@ -27,12 +28,12 @@ public class InteractControl : MonoBehaviour
 
     public void OpenInteractableIcon()
     {
-        interactIcon.SetActive(true);
+        interactIcon.enabled = true;
     }
 
     public void CloseInteractableIcon()
     {
-        interactIcon.SetActive(false);
+        interactIcon.enabled = false;
     }
 
     private void CheckInteraction()
@@ -46,16 +47,11 @@ public class InteractControl : MonoBehaviour
                 if(rc.transform.GetComponent<Interactable>())
                 {
                     rc.transform.GetComponent<Interactable>().Interact();
+                    interactIcon.enabled = false;
                     return; //here, we use return in order to prevent multiple interactions at once (remove if we wish to implement AoE type interaction with any interactable object within range)
                 }
             }
         }
 
-    }
-
-    public GameObject GetGameObject()
-    {
-        Debug.Log("wahteifsay");
-        return interactIcon;
     }
 }

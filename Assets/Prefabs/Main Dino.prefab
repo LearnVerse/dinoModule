@@ -76,7 +76,7 @@ GameObject:
   - component: {fileID: 4788196013077867339}
   - component: {fileID: 4788196013077867338}
   m_Layer: 6
-  m_Name: Playerw_CollisionBlocker
+  m_Name: Main Dino
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

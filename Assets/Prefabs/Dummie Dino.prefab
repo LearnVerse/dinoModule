@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 6322433997590682265}
   - component: {fileID: 6322433997590682268}
   m_Layer: 6
-  m_Name: OtherDinow_Collision Blocker
+  m_Name: Dummie Dino
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -10,6 +10,7 @@ public class InteractControl : MonoBehaviour
 //attach ui elements to player model
 {
     private Canvas interactIcon;
+    public float radiusOfInfluence = 3f;
 
     private void Start()
     {
@@ -38,7 +39,7 @@ public class InteractControl : MonoBehaviour
 
     private void CheckInteraction()
     {
-        RaycastHit[] hits = Physics.SphereCastAll(transform.position,3f,Vector3.forward,0f); //2m "sphere of influence" around character
+        RaycastHit[] hits = Physics.SphereCastAll(transform.position,radiusOfInfluence,Vector3.forward,0f); //set public 3f "sphere of influence" around character
 
         if(hits.Length > 0)
         {

@@ -252,7 +252,7 @@ GameObject:
   - component: {fileID: 1724212928383833754}
   - component: {fileID: 9076151160497104427}
   m_Layer: 0
-  m_Name: TestPlayer
+  m_Name: MirrorTestPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

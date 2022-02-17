@@ -8,6 +8,8 @@ public class SimplePlayerControllers : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
+        // TODO: Store all of the current positions on the backend
+        // When player moves, post to backend. Then backend tells frontend where to move.
         if(isLocalPlayer)
         {
             MovePlayer();

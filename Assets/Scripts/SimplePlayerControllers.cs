@@ -1,36 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
-// Need this
-using Photon.Pun;
-
-public class SimplePlayerControllers : MonoBehaviour
+public class SimplePlayerControllers : NetworkBehaviour
 {
     [SerializeField] float moveSpeed = 10f;
-
-    // Need this
-    PhotonView view;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        PrintInstruction();
-        view = GetComponent<PhotonView>();
-    }
 
     // Update is called once per frame
     void Update()
     {
-        if(view.IsMine) 
+        // TODO: Store all of the current positions on the backend
+        // When player moves, post to backend. Then backend tells frontend where to move.
+        if(isLocalPlayer)
         {
             MovePlayer();
         }
-    }
-
-    void PrintInstruction() 
-    {
-        Debug.Log("Use WASD to move");
     }
 
     void MovePlayer() 
@@ -41,3 +24,4 @@ public class SimplePlayerControllers : MonoBehaviour
         transform.Translate(xVal, 0f, zVal);
     }
 }
+

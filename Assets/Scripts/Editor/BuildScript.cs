@@ -51,4 +51,23 @@ public class BuildScript
         BuildPipeline.BuildPlayer(buildPlayerOptions);
         Console.WriteLine("Built Client. Please upload and notify team.");
     }
+
+    // TODO: Implement Heroku/Github deployment to
+    [MenuItem("Build/Deploy All")]
+    public static void DeployAll()
+    {
+
+    }
+
+    [MenuItem("Build/Deploy Server")]
+    public static void DeployServer()
+    {
+
+    }
+
+    [MenuItem("Build/Deploy Client")]
+    public static void DeployClient()
+    {
+
+    }
 }

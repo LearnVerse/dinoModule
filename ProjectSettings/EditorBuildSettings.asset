@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/NetworkTests/MirrorNetworking.unity
+    path: Assets/Scenes/FeatureTests/CombineMovementInteraction.unity
     guid: 556d8623b81bc704e9e2e518e897e107
   m_configObjects: {}

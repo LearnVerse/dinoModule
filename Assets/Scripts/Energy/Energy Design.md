@@ -20,7 +20,7 @@ We anticipate the following modules or functions:
 
 **Drain_Energy()**: _function to gradually drain user's energy to 
 simulate onset of hunger; dynamic response to reflect energy cost of 
-certain actions - stationary, walking, running, eating_
+certain actions - stationary, walking_
 
 **Replenish_Energy()**: _function to replenish energy upon user 
 consuming food_

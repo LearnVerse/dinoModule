@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
-public class PlayerController : MonoBehaviour
+public class MirrorPlayerController : NetworkBehaviour
 {
     public CharacterController _charController;
     public float moveSpeed = 3f;
@@ -13,17 +12,19 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        GameObject tempPlayer = GameObject.FindGameObjectWithTag("Player");
-        _charController = tempPlayer.GetComponent<CharacterController>();
+        
     }
 
 
     private void Update() 
     {
-        inputX = Input.GetAxis("Horizontal");
-        inputZ = Input.GetAxis("Vertical");
+        if(isLocalPlayer)
+        {
+            inputX = Input.GetAxis("Horizontal");
+            inputZ = Input.GetAxis("Vertical");
 
-        MovePlayer();
+            MovePlayer();
+        }
     }
 
     private void MovePlayer()

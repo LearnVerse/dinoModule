@@ -16,6 +16,14 @@ public class EnergyTest : MonoBehaviour
             yield return new WaitForSeconds(3);
         }
     }
+
+    IEnumerator Drain()
+    {
+        for (int a = 0; a<10; a++){
+            Add10();
+            yield return new WaitForSeconds(3);
+        }
+    }
     public void Add10()
     {
         en.Add(10);

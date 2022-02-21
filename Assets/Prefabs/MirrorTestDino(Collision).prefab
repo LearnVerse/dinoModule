@@ -60,6 +60,7 @@ GameObject:
   - component: {fileID: 3493571700690800649}
   - component: {fileID: 852196511472895213}
   - component: {fileID: 1458018211599533263}
+  - component: {fileID: 8111483608031637720}
   m_Layer: 6
   m_Name: MirrorTestDino(Collision)
   m_TagString: Player
@@ -117,7 +118,7 @@ MonoBehaviour:
   sceneId: 0
   serverOnly: 0
   visible: 0
-  m_AssetId: 56b84357743f40a4682b0ab66ae233f0
+  m_AssetId: 8b202f2c83ee0e54481efc79d5788662
   hasSpawned: 0
 --- !u!114 &311641442763030421
 MonoBehaviour:
@@ -200,6 +201,20 @@ MonoBehaviour:
   _charController: {fileID: 4788196013077867337}
   moveSpeed: 10
   rotateSpeed: 100
+--- !u!114 &8111483608031637720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4788196013077867334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b90bd851673e4092bbbba0e717c94aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterCollider: {fileID: 3493571700690800649}
+  characterBlockerCollider: {fileID: 4788196012850005455}
 --- !u!1 &4788196013098181857
 GameObject:
   m_ObjectHideFlags: 0

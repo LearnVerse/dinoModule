@@ -47,7 +47,8 @@ public class InteractControl : MonoBehaviour
             {
                 if(rc.transform.GetComponent<Interactable>())
                 {
-                    rc.transform.GetComponent<Interactable>().Interact();
+                    bool check = rc.transform.GetComponent<Interactable>().GetComponent<Openables2>().wasTriggered;
+                    if(check == false) rc.transform.GetComponent<Interactable>().Interact();
                     interactIcon.enabled = false;
                     return; //here, we use return in order to prevent multiple interactions at once (remove if we wish to implement AoE type interaction with any interactable object within range)
                 }

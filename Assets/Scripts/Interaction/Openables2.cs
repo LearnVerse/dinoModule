@@ -12,7 +12,8 @@ public class Openables2 : Interactable
     
     private MeshFilter mf;
     private MeshRenderer mr;
-    private int state = 0;
+    public int state = 0;
+    public int finalState = 1; //todo make public
 
 
     
@@ -25,13 +26,14 @@ public class Openables2 : Interactable
 
     //ideas: use list of objects with meshRenderer and health values to show object being gradually eaten (more resource intensive)
     public override void Interact() //creates an "eaten bush" prefab clone at the position of the "uneaten bush" and hides the uneaten bush
-    {
-        if(state < 1) 
-        {
+    { 
+        if(state < finalState){
             state++;
+            if(state == finalState) wasTriggered = true;
             mf.sharedMesh = states[state];
             mr.material = skins[state];
         } 
+        
     }
     
 

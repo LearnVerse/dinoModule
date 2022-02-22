@@ -1,17 +1,20 @@
 
+using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections;
 public class Energy : MonoBehaviour
 {
+    public MirrorPlayerController ctrl;
     public Image fill;
     public TextMeshProUGUI amount;
-    private bool isMoving = false; //checks if Dino is moving - false means stationary
     private bool drainTrigger = false;
-    private Transform prevPosition; //stores last position of the Dino
+    private bool isDead = false;
+    private bool moving = false;
+    public Vector3 prevPosition; //stores starting position of the Dino
     public GameObject dino; //your dino 
-    private Transform currPosition; //stores current position of the Dino
-
+    public Vector3 currPosition; //stores current position of the Dino
     public int currentValue, maxValue;
 
     // Start is called before the first frame update
@@ -19,73 +22,107 @@ public class Energy : MonoBehaviour
     {
         fill.fillAmount = Normalise();
         amount.text = $"{currentValue}/{maxValue}";
-        prevPosition = prevPosition.GetComponentInChildren<GameObject>().transform; //this is meant to refer to the child of this component that has a transform component . . . work in progress
+        prevPosition = dino.transform.position; //this is meant to refer to the child of this component that has a transform component . . . work in progress
+        UnityEngine.Debug.Log("Started");
+        StartCoroutine(MovingDrain());
     }
 
     void Update()
     {
-        if(!drainTrigger){
-            MoveCheck();
+        if(!drainTrigger){//if draintrigger hasnt been triggered
+            InitMoveCheck();//check for initial movement
         }
-
-
     }
 
-    private void MoveCheck()
+    private void InitMoveCheck()
     {
-        currPosition = currPosition.GetComponentInChildren<GameObject>().transform;
-
-        // currPosition = currPosition.GetComponent<dino>().transform;
+        currPosition = dino.transform.position;
         //check if previous position matches current position
-        if (prevPosition != currPosition){
-            drainTrigger = true;
-        }
-        else{
-            prevPosition = currPosition;
+        if ((prevPosition - currPosition).sqrMagnitude  > 0.001f){//if moved . . .
+            drainTrigger = true;//trigger energy drain
+            StartCoroutine(BaseDrain());
         }
     }
     public void Replenish_Energy()
     {
-        //when player eats food
-
-        //increase energy by 10
+        Add(10);
     }
     public void Death()
     {
-        //when energy reaches 0
+        UnityEngine.Debug.Log("died");
+        if(currentValue == 0){
+            //TODO: trigger death animation here
 
-        //trigger Death animation
-
-        //lock out player, send to sky view
+            //freeze player's position
+            // dino.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+            ctrl.moveSpeed=0f;
+            ctrl.rotateSpeed=0f;
+            isDead = true;
+        }
     }
-        public void Sub(int val)
+
+    IEnumerator BaseDrain()
+    {
+        while(!isDead){
+            Sub(10);
+            if(currentValue>0){
+            yield return new WaitForSeconds(10);
+            }
+            else{
+                isDead = true;
+                Death();
+            }
+        }
+    }
+    IEnumerator MovingDrain()
+    {
+        UnityEngine.Debug.Log("entered moving drain");
+        currPosition = dino.transform.position;
+
+        while(!isDead){
+            if((prevPosition - currPosition).sqrMagnitude  > 0.001f){//if moved . . .
+            UnityEngine.Debug.Log("is moving");
+            Sub(2);//trigger energy drain
+            if(currentValue>0){
+            yield return new WaitForSeconds(5);
+            }
+            else{
+                isDead = true;
+                Death();
+            }            
+            prevPosition = currPosition;
+            UnityEngine.Debug.Log($"{prevPosition.z},{currPosition.z}");
+        }
+        UnityEngine.Debug.Log("exiting moving drain");
+        
+        }
+    }
+    private void Sub(int val)
     {
         // currentValue = Mathf.Min(currentValue+val,maxValue);
         currentValue -= val;
 
-        //bounds check
         if (currentValue> maxValue)
             currentValue = maxValue;
+        if (currentValue<0)
+            currentValue = 0;
 
         fill.fillAmount = Normalise();
-        amount.text = $"{currentValue}/{maxValue}"; //update HUD element
-        
-
+        amount.text = $"{currentValue}/{maxValue}";
     }
-    public void Add(int val)
+   private void Add(int val)
     {
         // currentValue = Mathf.Min(currentValue+val,maxValue);
         currentValue += val;
 
         if (currentValue> maxValue)
             currentValue = maxValue;
+        if (currentValue<0)
+            currentValue = 0;
 
         fill.fillAmount = Normalise();
         amount.text = $"{currentValue}/{maxValue}";
-        
-
     }
-
 
 
     private float Normalise()

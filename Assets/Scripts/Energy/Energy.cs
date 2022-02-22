@@ -12,9 +12,20 @@ public class Energy : MonoBehaviour
     private bool drainTrigger = false;
     private bool isDead = false;
     private bool moving = false;
-    public Vector3 prevPosition; //stores starting position of the Dino
+    private Vector3 _prevPosition;
+    private Vector3 _currPosition;
+    public Vector3 prevPosition //stores previous position of the Dino
+    {
+        get{return _prevPosition;}
+        set{_prevPosition = value;}
+    }    
+    public Vector3 currPosition //stores current position of the Dino
+    {
+        get{return _currPosition;}
+        set{_currPosition = value;}
+    }
     public GameObject dino; //your dino 
-    public Vector3 currPosition; //stores current position of the Dino
+
     public int currentValue, maxValue;
 
     // Start is called before the first frame update
@@ -40,6 +51,7 @@ public class Energy : MonoBehaviour
         //check if previous position matches current position
         if ((prevPosition - currPosition).sqrMagnitude  > 0.001f){//if moved . . .
             drainTrigger = true;//trigger energy drain
+            UnityEngine.Debug.Log("started moving: beginning base drain");
             StartCoroutine(BaseDrain());
         }
     }
@@ -49,7 +61,7 @@ public class Energy : MonoBehaviour
     }
     public void Death()
     {
-        UnityEngine.Debug.Log("died");
+        UnityEngine.Debug.Log("Successful death, yaaay~!");
         if(currentValue == 0){
             //TODO: trigger death animation here
 
@@ -62,7 +74,8 @@ public class Energy : MonoBehaviour
     }
 
     IEnumerator BaseDrain()
-    {
+    {        
+        UnityEngine.Debug.Log("base drain starting");
         while(!isDead){
             Sub(10);
             if(currentValue>0){
@@ -70,31 +83,35 @@ public class Energy : MonoBehaviour
             }
             else{
                 isDead = true;
+                UnityEngine.Debug.Log("dying, stopping drains");
                 Death();
+                StopAllCoroutines();
             }
         }
     }
     IEnumerator MovingDrain()
     {
         UnityEngine.Debug.Log("entered moving drain");
-        currPosition = dino.transform.position;
-
         while(!isDead){
+            currPosition = dino.transform.position;
+
+            UnityEngine.Debug.Log($"{prevPosition},{currPosition}");
+            yield return new WaitForSeconds(2.5f);
             if((prevPosition - currPosition).sqrMagnitude  > 0.001f){//if moved . . .
-            UnityEngine.Debug.Log("is moving");
-            Sub(2);//trigger energy drain
-            if(currentValue>0){
-            yield return new WaitForSeconds(5);
+                UnityEngine.Debug.Log("is moving");
+                Sub(3);//trigger energy drain
+                if(currentValue>0){
+                    yield return null;
+                }
+                else{
+                    isDead = true;
+                    UnityEngine.Debug.Log("dying, stopping drains");                   
+                    Death();
+                    StopAllCoroutines();
+                } 
             }
-            else{
-                isDead = true;
-                Death();
-            }            
+            else UnityEngine.Debug.Log("stopped moving");           
             prevPosition = currPosition;
-            UnityEngine.Debug.Log($"{prevPosition.z},{currPosition.z}");
-        }
-        UnityEngine.Debug.Log("exiting moving drain");
-        
         }
     }
     private void Sub(int val)

@@ -11,10 +11,11 @@ public class InteractControl : MonoBehaviour
 {
     private Canvas interactIcon;
     public float radiusOfInfluence = 3f;
+    public Energy en;
 
     private void Start()
     {
-        interactIcon = gameObject.GetComponentInChildren<Canvas>();       
+        interactIcon = GameObject.FindGameObjectWithTag("UI1").GetComponent<Canvas>();   
         interactIcon.enabled = false; //sets the interactIcon's initial state to 'inactive' (invisible)
     }
     // Update is called once per frame
@@ -48,7 +49,10 @@ public class InteractControl : MonoBehaviour
                 if(rc.transform.GetComponent<Interactable>())
                 {
                     bool check = rc.transform.GetComponent<Interactable>().GetComponent<Openables2>().wasTriggered;
-                    if(check == false) rc.transform.GetComponent<Interactable>().Interact();
+                    if(check == false){
+                        rc.transform.GetComponent<Interactable>().Interact();
+                        en.Replenish_Energy();
+                    }
                     interactIcon.enabled = false;
                     return; //here, we use return in order to prevent multiple interactions at once (remove if we wish to implement AoE type interaction with any interactable object within range)
                 }

@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Icon
   - Walkable
+  - UI1
+  - UI2
   layers:
   - Default
   - TransparentFX

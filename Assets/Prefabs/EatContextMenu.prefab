@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 1443007706109047149}
   - component: {fileID: 1443007706109047150}
   m_Layer: 5
-  m_Name: Canvas
-  m_TagString: Icon
+  m_Name: EatContextMenu
+  m_TagString: UI1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -4,9 +4,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections;
+/*written by: Alex Davis and Katrina Yu
+CS98 Project: Team Learnverse
+This script implements the Energy mechanic
+*/
 public class Energy : MonoBehaviour
 {
-    public MirrorPlayerController ctrl;
+    public MirrorPlayerController ctrl; //player movement component
     public Image fill;
     public TextMeshProUGUI amount;
     private bool drainTrigger = false;
@@ -34,7 +38,7 @@ public class Energy : MonoBehaviour
         fill.fillAmount = Normalise();
         amount.text = $"{currentValue}/{maxValue}";
         prevPosition = dino.transform.position; //this is meant to refer to the child of this component that has a transform component . . . work in progress
-        UnityEngine.Debug.Log("Started");
+        // UnityEngine.Debug.Log("Started");
         StartCoroutine(MovingDrain());
     }
 
@@ -51,7 +55,7 @@ public class Energy : MonoBehaviour
         //check if previous position matches current position
         if ((prevPosition - currPosition).sqrMagnitude  > 0.001f){//if moved . . .
             drainTrigger = true;//trigger energy drain
-            UnityEngine.Debug.Log("started moving: beginning base drain");
+            // UnityEngine.Debug.Log("started moving: beginning base drain");
             StartCoroutine(BaseDrain());
         }
     }
@@ -61,7 +65,7 @@ public class Energy : MonoBehaviour
     }
     public void Death()
     {
-        UnityEngine.Debug.Log("Successful death, yaaay~!");
+        // UnityEngine.Debug.Log("Successful death, yaaay~!");
         if(currentValue == 0){
             //TODO: trigger death animation here
 
@@ -75,7 +79,7 @@ public class Energy : MonoBehaviour
 
     IEnumerator BaseDrain()
     {        
-        UnityEngine.Debug.Log("base drain starting");
+        // UnityEngine.Debug.Log("base drain starting");
         while(!isDead){
             Sub(10);
             if(currentValue>0){
@@ -83,7 +87,7 @@ public class Energy : MonoBehaviour
             }
             else{
                 isDead = true;
-                UnityEngine.Debug.Log("dying, stopping drains");
+                // UnityEngine.Debug.Log("dying, stopping drains");
                 Death();
                 StopAllCoroutines();
             }
@@ -91,26 +95,26 @@ public class Energy : MonoBehaviour
     }
     IEnumerator MovingDrain()
     {
-        UnityEngine.Debug.Log("entered moving drain");
+        // UnityEngine.Debug.Log("entered moving drain");
         while(!isDead){
             currPosition = dino.transform.position;
 
-            UnityEngine.Debug.Log($"{prevPosition},{currPosition}");
+            // UnityEngine.Debug.Log($"{prevPosition},{currPosition}");
             yield return new WaitForSeconds(2.5f);
             if((prevPosition - currPosition).sqrMagnitude  > 0.001f){//if moved . . .
-                UnityEngine.Debug.Log("is moving");
+                // UnityEngine.Debug.Log("is moving");
                 Sub(3);//trigger energy drain
                 if(currentValue>0){
                     yield return null;
                 }
                 else{
                     isDead = true;
-                    UnityEngine.Debug.Log("dying, stopping drains");                   
+                    // UnityEngine.Debug.Log("dying, stopping drains");                   
                     Death();
                     StopAllCoroutines();
                 } 
             }
-            else UnityEngine.Debug.Log("stopped moving");           
+            // else UnityEngine.Debug.Log("stopped moving");           
             prevPosition = currPosition;
         }
     }

@@ -26,7 +26,7 @@ RectTransform:
   m_GameObject: {fileID: 4392229941982341613}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.32703, y: 0.32703, z: 0.32703}
   m_Children:
   - {fileID: 8790447585243925987}
   - {fileID: 7181198757640366089}
@@ -52,13 +52,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b196fe1ee4fb22640a587c59eaf21e0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ctrl: {fileID: 0}
   fill: {fileID: 7581901460047171387}
   amount: {fileID: 5483023838857209366}
-  prevPosition: {fileID: 0}
   dino: {fileID: 0}
-  currPosition: {fileID: 0}
-  currentValue: 0
-  maxValue: 0
+  currentValue: 20
+  maxValue: 100
 --- !u!1 &4635122425470115624
 GameObject:
   m_ObjectHideFlags: 0

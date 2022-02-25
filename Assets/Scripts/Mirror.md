@@ -105,7 +105,7 @@ void targetRpc()
 
 ## SyncVar
 
-- Only on classes inhereting NetworkBehavior
+- Only on classes inheriting NetworkBehavior
 - Sync servers to clients on objects
 - Shows latest state of the variable
 

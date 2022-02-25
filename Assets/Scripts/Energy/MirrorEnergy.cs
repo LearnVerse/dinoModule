@@ -35,7 +35,7 @@ public class MirrorEnergy : NetworkBehaviour
     public int currentValue, maxValue;
 
     // Start is called before the first frame update
-    void Start()
+    public override void OnStartClient()
     {
         fill.fillAmount = Normalise();
         amount.text = $"{currentValue}/{maxValue}";
@@ -47,7 +47,7 @@ public class MirrorEnergy : NetworkBehaviour
     void Update()
     {
         if(isLocalPlayer) {
-            if(!drainTrigger){//if draintrigger hasnt been triggered
+            if(!drainTrigger){//if draintrigger hasn't been triggered
                 InitMoveCheck();//check for initial movement
             }
         }
@@ -80,7 +80,7 @@ public class MirrorEnergy : NetworkBehaviour
             isDead = true;
         }
     }
-
+    
     IEnumerator BaseDrain()
     {        
         // UnityEngine.Debug.Log("base drain starting");
@@ -97,6 +97,7 @@ public class MirrorEnergy : NetworkBehaviour
             }
         }
     }
+    
     IEnumerator MovingDrain()
     {
         // UnityEngine.Debug.Log("entered moving drain");
@@ -122,6 +123,7 @@ public class MirrorEnergy : NetworkBehaviour
             prevPosition = currPosition;
         }
     }
+    [TargetRpc]
     private void Sub(int val)
     {
         // currentValue = Mathf.Min(currentValue+val,maxValue);
@@ -135,7 +137,8 @@ public class MirrorEnergy : NetworkBehaviour
         fill.fillAmount = Normalise();
         amount.text = $"{currentValue}/{maxValue}";
     }
-   private void Add(int val)
+    [TargetRpc]
+    private void Add(int val)
     {
         // currentValue = Mathf.Min(currentValue+val,maxValue);
         currentValue += val;
@@ -148,6 +151,7 @@ public class MirrorEnergy : NetworkBehaviour
         fill.fillAmount = Normalise();
         amount.text = $"{currentValue}/{maxValue}";
     }
+
 
 
     private float Normalise()

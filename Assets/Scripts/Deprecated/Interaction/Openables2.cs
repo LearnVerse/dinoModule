@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Openables2 : NetworkInteractionLV
+public class Openables2 : Interactable
 {
     public List<Mesh> states;
     public List<Material> skins;

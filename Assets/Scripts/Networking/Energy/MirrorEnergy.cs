@@ -9,15 +9,12 @@ using Mirror;
 CS98 Project: Team Learnverse
 This script implements the Energy mechanic
 */
-public class MirrorEnergy : NetworkBehaviour
-{
+public class MirrorEnergy : NetworkBehaviour {
     public MirrorPlayerController ctrl; //player movement component
-
     public Image fill;
     public TextMeshProUGUI amount;
     private bool drainTrigger = false;
     private bool isDead = false;
-    private bool moving = false;
     private Vector3 _prevPosition;
     private Vector3 _currPosition;
     public Vector3 prevPosition //stores previous position of the Dino
@@ -46,11 +43,15 @@ public class MirrorEnergy : NetworkBehaviour
 
     void Update()
     {
-        if(isLocalPlayer) {
-            if(!drainTrigger){//if draintrigger hasnt been triggered
-                InitMoveCheck();//check for initial movement
-            }
+        if(!drainTrigger){//if draintrigger hasnt been triggered
+            InitMoveCheck();//check for initial movement
         }
+    }
+    
+    public void UpdateUI()
+    {
+        fill.fillAmount = Normalise();
+        amount.text = $"{currentValue}/{maxValue}";
     }
 
     private void InitMoveCheck()
@@ -85,9 +86,9 @@ public class MirrorEnergy : NetworkBehaviour
     {        
         // UnityEngine.Debug.Log("base drain starting");
         while(!isDead){
-            Sub(10);
+            Sub(1);
             if(currentValue>0){
-            yield return new WaitForSeconds(10);
+            yield return new WaitForSeconds(2);
             }
             else{
                 isDead = true;
@@ -104,10 +105,10 @@ public class MirrorEnergy : NetworkBehaviour
             currPosition = dino.transform.position;
 
             // UnityEngine.Debug.Log($"{prevPosition},{currPosition}");
-            yield return new WaitForSeconds(2.5f);
+            yield return new WaitForSeconds(0.5f);
             if((prevPosition - currPosition).sqrMagnitude  > 0.001f){//if moved . . .
                 // UnityEngine.Debug.Log("is moving");
-                Sub(3);//trigger energy drain
+                Sub(2);//trigger energy drain
                 if(currentValue>0){
                     yield return null;
                 }
@@ -132,8 +133,7 @@ public class MirrorEnergy : NetworkBehaviour
         if (currentValue<0)
             currentValue = 0;
 
-        fill.fillAmount = Normalise();
-        amount.text = $"{currentValue}/{maxValue}";
+        UpdateUI();
     }
    private void Add(int val)
     {
@@ -145,8 +145,7 @@ public class MirrorEnergy : NetworkBehaviour
         if (currentValue<0)
             currentValue = 0;
 
-        fill.fillAmount = Normalise();
-        amount.text = $"{currentValue}/{maxValue}";
+        UpdateUI();
     }
 
 

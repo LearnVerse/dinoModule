@@ -7,7 +7,7 @@ using Mirror;
 CS98 Project: Team Learnverse
 This script is the main controller for the interactable objects
 */
-public class InteractControl : NetworkBehaviour
+public class NetworkInteractControlLV : NetworkBehaviour
 //attach ui elements to player model
 {
     private Canvas interactIcon;

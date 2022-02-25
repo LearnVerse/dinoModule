@@ -17,13 +17,13 @@ public abstract class NetworkInteractionLV : NetworkBehaviour
 {     
     public bool wasTriggered = false;
     public abstract void Interact(); //abstract method to be implemented for each type of interactable object (in our case, trees and carcasses)
-
+    [TargetRpc]//we only want this to show up for this specific client
     private void OnTriggerEnter(Collider collision) //method to display the "interact icon" upon detection of player entering the collider
     {
         if(collision.CompareTag("Player"))
             if(wasTriggered == false) collision.GetComponent<InteractControl>().OpenInteractableIcon();
     }
-
+    [TargetRpc]//we only want this to show up for this specific client
     private void OnTriggerExit(Collider collision) //method to hide the "interact icon" upon detection of player entering the collider
     {
         if(collision.CompareTag("Player"))

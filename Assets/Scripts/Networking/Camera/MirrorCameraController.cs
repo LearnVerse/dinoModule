@@ -9,7 +9,8 @@ public class MirrorCameraController : NetworkBehaviour
     {
         if(!isLocalPlayer) {
             // Sets camera to be only renderable camera for client
-            var camera = transform.Find("PlayerCam");
+            // var camera = transform.Find("PlayerCam");
+            var camera = transform.Find("PlayerCinamachineTest");
             camera.GetComponent<Camera>().enabled = false;
             camera.GetComponent<AudioListener>().enabled = false;
         }

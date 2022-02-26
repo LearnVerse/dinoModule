@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657815, g: 0.49641192, b: 0.57481617, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -130,6 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5510802095938773664, guid: 3ab55fd9a50620d4685de44ab6180b5a, type: 3}
+      propertyPath: sceneId
+      value: 2406594437
+      objectReference: {fileID: 0}
     - target: {fileID: 6489379080879318283, guid: 3ab55fd9a50620d4685de44ab6180b5a, type: 3}
       propertyPath: skins.Array.data[1]
       value: 
@@ -454,6 +458,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4743536296620555305, guid: 4b6c2d6ad6b938140a0ac4e8ae1d23d7, type: 3}
+      propertyPath: sceneId
+      value: 455558696
+      objectReference: {fileID: 0}
     - target: {fileID: 7525694030478256496, guid: 4b6c2d6ad6b938140a0ac4e8ae1d23d7, type: 3}
       propertyPath: m_Name
       value: Meat (1)
@@ -511,6 +519,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5510802095938773664, guid: 3ab55fd9a50620d4685de44ab6180b5a, type: 3}
+      propertyPath: sceneId
+      value: 4098270963
+      objectReference: {fileID: 0}
     - target: {fileID: 6489379080879318283, guid: 3ab55fd9a50620d4685de44ab6180b5a, type: 3}
       propertyPath: skins.Array.data[1]
       value: 
@@ -572,6 +584,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4743536296620555305, guid: 4b6c2d6ad6b938140a0ac4e8ae1d23d7, type: 3}
+      propertyPath: sceneId
+      value: 3585821264
+      objectReference: {fileID: 0}
     - target: {fileID: 7525694030478256496, guid: 4b6c2d6ad6b938140a0ac4e8ae1d23d7, type: 3}
       propertyPath: m_Name
       value: Meat

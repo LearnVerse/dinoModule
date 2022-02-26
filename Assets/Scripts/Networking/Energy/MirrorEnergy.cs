@@ -11,6 +11,7 @@ This script implements the Energy mechanic
 */
 public class MirrorEnergy : NetworkBehaviour {
     public MirrorPlayerController ctrl; //player movement component
+    public MirrorCameraController camCtrl;
     public Image fill;
     public TextMeshProUGUI amount;
     private bool drainTrigger = false;

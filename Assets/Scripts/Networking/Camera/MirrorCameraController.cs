@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
+using Cinemachine;
 
 public class MirrorCameraController : NetworkBehaviour
 {
@@ -10,9 +11,13 @@ public class MirrorCameraController : NetworkBehaviour
         if(!isLocalPlayer) {
             // Sets camera to be only renderable camera for client
             // var camera = transform.Find("PlayerCam");
-            var camera = transform.Find("PlayerCinamachineTest");
+            var camera = transform.Find("Camera");
             camera.GetComponent<Camera>().enabled = false;
+            camera.GetComponent<CinemachineBrain>().enabled = false;
             camera.GetComponent<AudioListener>().enabled = false;
+
+            var cinemachine = transform.Find("PlayerCinamachineTest");
+            cinemachine.GetComponent<CinemachineVirtualCamera>().enabled = false;
         }
 
         if(isLocalPlayer) {
@@ -21,6 +26,8 @@ public class MirrorCameraController : NetworkBehaviour
             var UI2 = transform.Find("EatContextMenu");
             UI1.GetComponentInChildren<Canvas>().enabled = true;
             UI2.GetComponentInChildren<Canvas>().enabled = true;
+
+            
         }
     }
 }

@@ -26,8 +26,13 @@ public class MirrorCameraController : NetworkBehaviour
             var UI2 = transform.Find("EatContextMenu");
             UI1.GetComponentInChildren<Canvas>().enabled = true;
             UI2.GetComponentInChildren<Canvas>().enabled = true;
-
-            
         }
     }
+
+    // TODO:
+    // - Get isDead value from MirrorEnergy
+    // - Animate the camera going into birdseye view
+    // - Set a flag that player has died and that it should open the UI for death
+    // Debug.log("Prompt")
+    // - Switch to focus on the map itself, and orbit around
 }

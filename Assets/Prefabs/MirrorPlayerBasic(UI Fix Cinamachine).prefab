@@ -583,8 +583,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1557769254725101892}
-  m_LocalRotation: {x: 0.24654396, y: -0.0000000083376435, z: 0.0000000021210698, w: 0.96913165}
-  m_LocalPosition: {x: 0, y: 2.72, z: -5}
+  m_LocalRotation: {x: 0.014267025, y: -0.6811578, z: 0.013278314, w: 0.73187715}
+  m_LocalPosition: {x: 69.56, y: 2.72, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5114458038881731211}
@@ -1014,6 +1014,7 @@ MonoBehaviour:
   camCtrl: {fileID: 0}
   fill: {fileID: 2996635577787176180}
   amount: {fileID: 917043527923858905}
+  isDead: 0
   dino: {fileID: 4788196013077867334}
   currentValue: 100
   maxValue: 100
@@ -1307,9 +1308,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_BindingMode: 1
   m_FollowOffset: {x: 0, y: 2.72, z: -5}
-  m_XDamping: 1
-  m_YDamping: 1.9
-  m_ZDamping: 1
+  m_XDamping: 3.3
+  m_YDamping: 3.13
+  m_ZDamping: 3.66
   m_AngularDampingMode: 0
   m_PitchDamping: 0
   m_YawDamping: 0
@@ -1341,8 +1342,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7278387229043475864}
-  m_LocalRotation: {x: 0.24654396, y: -0.0000000083376435, z: 0.0000000021210698, w: 0.96913165}
-  m_LocalPosition: {x: 0, y: 2.72, z: -5}
+  m_LocalRotation: {x: 0.014267025, y: -0.6811578, z: 0.013278314, w: 0.73187715}
+  m_LocalPosition: {x: 69.56, y: 2.72, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4788196013077867336}

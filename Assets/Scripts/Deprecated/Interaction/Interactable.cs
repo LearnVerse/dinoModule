@@ -1,4 +1,9 @@
- using UnityEngine;
+using System;
+using System.Runtime.InteropServices.ComTypes;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using Mirror;
 
 //Inspired by Comp-3 Unity Tutorials: https://www.youtube.com/channel/UC26kmK523wCy9RziFrvhp7g
 
@@ -9,21 +14,58 @@
 // m_ScaleZ = .1f;
 
 
-public abstract class Interactable : MonoBehaviour
+public class Interactable : NetworkBehaviour
 {     
+    Collider test;
+    public List<Mesh> states;
+    public List<Material> skins;
+    
+    private MeshFilter mf;
+    private MeshRenderer mr;
+    [SyncVar(hook = nameof(changeState))]    
+    private int state = 0;
+    public int finalState = 1; //todo make public
     public bool wasTriggered = false;
-    public abstract void Interact(); //abstract method to be implemented for each type of interactable object (in our case, trees and carcasses)
+  
+    [ClientRpc]
+    public void Interact() //creates an "eaten bush" prefab clone at the position of the "uneaten bush" and hides the uneaten bush
+    { 
+        if(state < finalState){
+            changeState(state,state+1);
+            if(state == finalState) wasTriggered = true;
+            mf.sharedMesh = states[state];
+            mr.material = skins[state];
+        } 
+    }    
+    void changeState(int oldState, int newState){
+        state = newState;
+    }
+    // public void getInteract(){
+    //     Interact();
+    // }
+    private void Start()
+    {   
+        mf = gameObject.GetComponent<MeshFilter>();
+        mr = gameObject.GetComponent<MeshRenderer>();
+        mf.sharedMesh = states[state];
+    }
 
     private void OnTriggerEnter(Collider collision) //method to display the "interact icon" upon detection of player entering the collider
     {
         if(collision.CompareTag("Player"))
-            if(wasTriggered == false) collision.GetComponent<InteractControl>().OpenInteractableIcon();
+            UnityEngine.Debug.Log("is a player");
+            if(wasTriggered == false) collision.GetComponent<InteractControl>().setInteract(true);  
+                UnityEngine.Debug.Log("open interact icon");
+
+
     }
 
     private void OnTriggerExit(Collider collision) //method to hide the "interact icon" upon detection of player entering the collider
     {
         if(collision.CompareTag("Player"))
-            collision.GetComponent<InteractControl>().CloseInteractableIcon();
+            UnityEngine.Debug.Log("is a player");
+            collision.GetComponent<InteractControl>().setInteract(false);
+            UnityEngine.Debug.Log("close interact icon");
     }
 }
 

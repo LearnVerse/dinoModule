@@ -16,9 +16,9 @@ public class MirrorCameraController : NetworkBehaviour
 
         if(isLocalPlayer) {
             // Sets UI elements to be only renderable elements for client
-            var UI1 = transform.Find("Energy");
-            var UI2 = transform.Find("EatContextMenu");
-            UI1.GetComponentInChildren<Canvas>().enabled = true;
+            var UI1 = transform.Find("EatContextMenu");
+            var UI2 = transform.Find("Energy");
+            UI1.GetComponentInChildren<Canvas>().enabled = false;
             UI2.GetComponentInChildren<Canvas>().enabled = true;
         }
     }

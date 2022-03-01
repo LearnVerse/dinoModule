@@ -6,6 +6,8 @@ using Cinemachine;
 
 public class MirrorCameraController : NetworkBehaviour
 {
+
+    public MirrorEnergy script;
     public override void OnStartClient()
     {
         if(!isLocalPlayer) {
@@ -29,10 +31,24 @@ public class MirrorCameraController : NetworkBehaviour
         }
     }
 
-    // TODO:
-    // - Get isDead value from MirrorEnergy
-    // - Animate the camera going into birdseye view
-    // - Set a flag that player has died and that it should open the UI for death
-    // Debug.log("Prompt")
-    // - Switch to focus on the map itself, and orbit around
+    void Update()
+    {
+
+        if (script.isDead) {
+            // Animates the camera to go into bird's eye view
+            var playerCam = transform.Find("PlayerCinamachineTest");
+            var transposer = playerCam.GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineTransposer>();
+            transposer.m_FollowOffset = new Vector3(0, 10, -5);
+            // TODO Smooth out the transition between follow offsets (possibly with a series height changes with delays in between)
+
+            // Sets a flag that the player has died -> trigger UI for death
+            Debug.Log("Player died");
+
+            // TODO Animate the camera to circle around playing area
+
+            // To prevent the update function from running endlessly after player death
+            enabled = false;
+        }
+    }
+
 }

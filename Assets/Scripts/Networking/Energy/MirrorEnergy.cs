@@ -65,10 +65,12 @@ public class MirrorEnergy : NetworkBehaviour {
             StartCoroutine(BaseDrain());
         }
     }
+
     public void Replenish_Energy()
     {
         Add(10);
     }
+    
     public void Death()
     {
         // UnityEngine.Debug.Log("Successful death, yaaay~!");

@@ -35,18 +35,20 @@ public class MirrorCameraController : NetworkBehaviour
     {
 
         if (script.isDead) {
+            // Sets a flag that the player has died -> trigger UI for death
+            Debug.Log("Player died");
+
             // Animates the camera to go into bird's eye view
             var playerCam = transform.Find("PlayerCinamachineTest");
             var transposer = playerCam.GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineTransposer>();
             transposer.m_FollowOffset = new Vector3(0, 10, -5);
-            // TODO Smooth out the transition between follow offsets (possibly with a series height changes with delays in between)
-
-            // Sets a flag that the player has died -> trigger UI for death
-            Debug.Log("Player died");
+            // TODO Smooth out the transition between follow offsets 
+            // possibly with a series height changes with delays in between
+            // ideally lasting the same as the character death animation
 
             // TODO Animate the camera to circle around playing area
 
-            // To prevent the update function from running endlessly after player death
+            // Prevents the update function from running endlessly after player death
             enabled = false;
         }
     }

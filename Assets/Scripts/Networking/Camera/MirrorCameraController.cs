@@ -46,7 +46,9 @@ public class MirrorCameraController : NetworkBehaviour
             // possibly with a series height changes with delays in between
             // ideally lasting the same as the character death animation
 
+            // Switches to camera surveying game area
             // TODO Animate the camera to circle around playing area
+            playerCam.GetComponent<CinemachineVirtualCamera>().enabled = false;
 
             // Prevents the update function from running endlessly after player death
             enabled = false;

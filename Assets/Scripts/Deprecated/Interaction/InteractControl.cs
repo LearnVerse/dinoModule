@@ -83,12 +83,15 @@ public class InteractControl : NetworkBehaviour
                     bool check = food.wasTriggered;
                     if(check == false){
                         if (food.isMeat == isMeatEater){
+                            Debug.Log(food);
                             food.Interact();
+                            Debug.Log($"after:{food}");
                             en.Replenish_Energy();
                         } 
                         else UnityEngine.Debug.Log("Can't Eat this!");                       
                     }
                     interactIcon.enabled = false;
+                    cantEatIcon.enabled = false;
                     return; //here, we use return in order to prevent multiple interactions at once (remove if we wish to implement AoE type interaction with any interactable object within range)
                 }
             }

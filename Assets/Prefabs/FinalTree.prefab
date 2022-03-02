@@ -114,10 +114,10 @@ MonoBehaviour:
   syncInterval: 0.1
   states:
   - {fileID: 4300000, guid: 1bb662af9618a4376920ee637d4a3339, type: 2}
-  - {fileID: 4300002, guid: 998510ed2ef484d2d84e04cfbf10c00d, type: 3}
+  - {fileID: 4300000, guid: 1bb662af9618a4376920ee637d4a3339, type: 2}
   skins:
   - {fileID: 2100000, guid: 2cc4f240233026e4289ba05ae66a2926, type: 2}
-  - {fileID: 2100000, guid: 8d1484fb482d1a64ea2d0431afdb522c, type: 2}
+  - {fileID: 2100000, guid: 40a353f6117398145a3e785d9854de93, type: 2}
   finalState: 1
   wasTriggered: 0
   isMeat: 0

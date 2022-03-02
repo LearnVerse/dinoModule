@@ -15,7 +15,7 @@ public class MirrorEnergy : NetworkBehaviour {
     public Image fill;
     public TextMeshProUGUI amount;
     private bool drainTrigger = false;
-    private bool isDead = false;
+    public bool isDead = false;
     private Vector3 _prevPosition;
     private Vector3 _currPosition;
     public Vector3 prevPosition //stores previous position of the Dino
@@ -65,10 +65,12 @@ public class MirrorEnergy : NetworkBehaviour {
             StartCoroutine(BaseDrain());
         }
     }
+
     public void Replenish_Energy()
     {
         Add(10);
     }
+    
     public void Death()
     {
         // UnityEngine.Debug.Log("Successful death, yaaay~!");

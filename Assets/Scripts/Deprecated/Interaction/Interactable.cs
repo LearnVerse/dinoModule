@@ -23,7 +23,7 @@ public class Interactable : NetworkBehaviour
     private MeshFilter mf;
     private MeshRenderer mr;
     [SyncVar(hook = nameof(changeState))]    
-    private int state = 0;
+    public int state = 0;
     public int finalState = 1; //todo make public
     public bool wasTriggered = false;
     public bool isMeat;
@@ -31,7 +31,10 @@ public class Interactable : NetworkBehaviour
     [ClientRpc]
     public void Interact() //creates an "eaten bush" prefab clone at the position of the "uneaten bush" and hides the uneaten bush
     { 
+        Debug.Log("reached interact");
+        Debug.Log($"{state},{finalState}");
         if(state < finalState){
+            Debug.Log("reached state logic");
             changeState(state,state+1);
             if(state == finalState) wasTriggered = true;
             mf.sharedMesh = states[state];
@@ -39,6 +42,7 @@ public class Interactable : NetworkBehaviour
         } 
     }    
     void changeState(int oldState, int newState){
+        Debug.Log($"{oldState},{newState}");
         state = newState;
     }
     // public void getInteract(){

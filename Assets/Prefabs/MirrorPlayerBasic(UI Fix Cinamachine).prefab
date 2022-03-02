@@ -1138,7 +1138,7 @@ MonoBehaviour:
   cantEatIcon: {fileID: 7502829057993209195}
   radiusOfInfluence: 3
   en: {fileID: 6912327527009631400}
-  isMeatEater: 0
+  isMeatEater: 1
 --- !u!114 &6912327527009631400
 MonoBehaviour:
   m_ObjectHideFlags: 0

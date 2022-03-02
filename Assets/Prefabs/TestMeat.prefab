@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 5368413328778689523}
   - component: {fileID: 957208048064441091}
   - component: {fileID: 4050127935571401200}
-  - component: {fileID: 6224863095034601341}
   - component: {fileID: 4743536296620555305}
+  - component: {fileID: 8320887289615377442}
   m_Layer: 0
   m_Name: TestMeat
   m_TagString: Untagged
@@ -98,27 +98,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6224863095034601341
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7525694030478256496}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0607da0a650d7b940b3b8a41cb651a77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  wasTriggered: 0
-  states:
-  - {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
-  - {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
-  skins:
-  - {fileID: 2100000, guid: 1d41f8c57e738e44f9f12fc053be388c, type: 2}
-  - {fileID: 2100000, guid: c48ed0c67054fc24da0ac1cced5a308c, type: 2}
-  state: 0
-  finalState: 1
 --- !u!114 &4743536296620555305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,3 +115,26 @@ MonoBehaviour:
   visible: 0
   m_AssetId: 4b6c2d6ad6b938140a0ac4e8ae1d23d7
   hasSpawned: 0
+--- !u!114 &8320887289615377442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7525694030478256496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f831781e84433b4caeb3df1515cc38a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  states:
+  - {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  - {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  skins:
+  - {fileID: 2100000, guid: 1d41f8c57e738e44f9f12fc053be388c, type: 2}
+  - {fileID: 2100000, guid: 40a353f6117398145a3e785d9854de93, type: 2}
+  finalState: 1
+  wasTriggered: 0
+  isMeat: 1

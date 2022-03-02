@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 6902770251269619968}
   - component: {fileID: 6902770251269619969}
   - component: {fileID: 8577364061383420398}
-  - component: {fileID: 6489379080879318283}
   - component: {fileID: 5510802095938773664}
+  - component: {fileID: 982747793360414165}
   m_Layer: 0
   m_Name: TestTree
   m_TagString: Untagged
@@ -98,29 +98,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6489379080879318283
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6902770251269619980}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0607da0a650d7b940b3b8a41cb651a77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
-  wasTriggered: 0
-  states:
-  - {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
-  - {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
-  skins:
-  - {fileID: 2100000, guid: 3c07a6a2e0e9c5f4b85607360e0c7b6b, type: 2}
-  - {fileID: 2100000, guid: c48ed0c67054fc24da0ac1cced5a308c, type: 2}
-  state: 0
-  finalState: 1
 --- !u!114 &5510802095938773664
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,3 +115,26 @@ MonoBehaviour:
   visible: 0
   m_AssetId: 3ab55fd9a50620d4685de44ab6180b5a
   hasSpawned: 0
+--- !u!114 &982747793360414165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6902770251269619980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f831781e84433b4caeb3df1515cc38a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  states:
+  - {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  - {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  skins:
+  - {fileID: 2100000, guid: 3c07a6a2e0e9c5f4b85607360e0c7b6b, type: 2}
+  - {fileID: 2100000, guid: 64a4684ba67ced04c811f6174e678a22, type: 2}
+  totalStates: 2
+  finalState: 1
+  wasTriggered: 0

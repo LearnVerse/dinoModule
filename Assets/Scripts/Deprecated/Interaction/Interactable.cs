@@ -16,7 +16,7 @@ using Mirror;
 
 public class Interactable : NetworkBehaviour
 {     
-    Collider test;
+    // Collider test;
     public List<Mesh> states;
     public List<Material> skins;
     
@@ -26,6 +26,7 @@ public class Interactable : NetworkBehaviour
     private int state = 0;
     public int finalState = 1; //todo make public
     public bool wasTriggered = false;
+    public bool isMeat;
   
     [ClientRpc]
     public void Interact() //creates an "eaten bush" prefab clone at the position of the "uneaten bush" and hides the uneaten bush
@@ -52,10 +53,15 @@ public class Interactable : NetworkBehaviour
 
     private void OnTriggerEnter(Collider collision) //method to display the "interact icon" upon detection of player entering the collider
     {
-        if(collision.CompareTag("Player"))
-            UnityEngine.Debug.Log("is a player");
-            if(wasTriggered == false) collision.GetComponent<InteractControl>().setInteract(true);  
+        if (wasTriggered == false){
+            if(collision.CompareTag("Player"))
+                UnityEngine.Debug.Log("is a player");
+                InteractControl playerctrl = collision.GetComponent<InteractControl>(); 
+                if(playerctrl == null) UnityEngine.Debug.Log("player interact controller not found");
+                if(playerctrl.isMeatEater != isMeat) playerctrl.setIcon(playerctrl.player, false, true);
+                else playerctrl.setIcon(playerctrl.player, true, true);            
                 UnityEngine.Debug.Log("open interact icon");
+        }
 
 
     }
@@ -64,7 +70,12 @@ public class Interactable : NetworkBehaviour
     {
         if(collision.CompareTag("Player"))
             UnityEngine.Debug.Log("is a player");
-            collision.GetComponent<InteractControl>().setInteract(false);
+            InteractControl playerctrl = collision.GetComponent<InteractControl>();
+            if(playerctrl == null) UnityEngine.Debug.Log("player interact controller not found");
+            else{
+                playerctrl.setIcon(playerctrl.player, true, false);
+                playerctrl.setIcon(playerctrl.player, false, false);
+            }
             UnityEngine.Debug.Log("close interact icon");
     }
 }

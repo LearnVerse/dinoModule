@@ -137,3 +137,4 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 40a353f6117398145a3e785d9854de93, type: 2}
   finalState: 1
   wasTriggered: 0
+  isMeat: 1

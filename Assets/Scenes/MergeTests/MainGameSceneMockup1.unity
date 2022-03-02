@@ -280,6 +280,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: TwoResourceSpawner (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7875072492189511439, guid: 90ecaba07a2b944c3812dfe8e4532da5, type: 3}
+      propertyPath: resources.Array.data[0]
+      value: 
+      objectReference: {fileID: 6902770251269619980, guid: 8dab24a8ed8323c4ea366d4be4678e82, type: 3}
+    - target: {fileID: 7875072492189511439, guid: 90ecaba07a2b944c3812dfe8e4532da5, type: 3}
+      propertyPath: resources.Array.data[1]
+      value: 
+      objectReference: {fileID: 7525694030478256496, guid: 3f3aed0b312d0be4fbd922cf9be45660, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90ecaba07a2b944c3812dfe8e4532da5, type: 3}
 --- !u!4 &520248319 stripped
@@ -545,6 +553,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: TwoResourceSpawner (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 7875072492189511439, guid: 90ecaba07a2b944c3812dfe8e4532da5, type: 3}
+      propertyPath: resources.Array.data[0]
+      value: 
+      objectReference: {fileID: 6902770251269619980, guid: 8dab24a8ed8323c4ea366d4be4678e82, type: 3}
+    - target: {fileID: 7875072492189511439, guid: 90ecaba07a2b944c3812dfe8e4532da5, type: 3}
+      propertyPath: resources.Array.data[1]
+      value: 
+      objectReference: {fileID: 7525694030478256496, guid: 3f3aed0b312d0be4fbd922cf9be45660, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90ecaba07a2b944c3812dfe8e4532da5, type: 3}
 --- !u!4 &1587160887 stripped
@@ -607,6 +623,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: TwoResourceSpawner (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 7875072492189511439, guid: 90ecaba07a2b944c3812dfe8e4532da5, type: 3}
+      propertyPath: resources.Array.data[0]
+      value: 
+      objectReference: {fileID: 6902770251269619980, guid: 8dab24a8ed8323c4ea366d4be4678e82, type: 3}
+    - target: {fileID: 7875072492189511439, guid: 90ecaba07a2b944c3812dfe8e4532da5, type: 3}
+      propertyPath: resources.Array.data[1]
+      value: 
+      objectReference: {fileID: 7525694030478256496, guid: 3f3aed0b312d0be4fbd922cf9be45660, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90ecaba07a2b944c3812dfe8e4532da5, type: 3}
 --- !u!4 &1708044003 stripped
@@ -1039,6 +1063,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: TwoResourceSpawner
       objectReference: {fileID: 0}
+    - target: {fileID: 7875072492189511439, guid: 90ecaba07a2b944c3812dfe8e4532da5, type: 3}
+      propertyPath: resources.Array.data[0]
+      value: 
+      objectReference: {fileID: 6902770251269619980, guid: 8dab24a8ed8323c4ea366d4be4678e82, type: 3}
+    - target: {fileID: 7875072492189511439, guid: 90ecaba07a2b944c3812dfe8e4532da5, type: 3}
+      propertyPath: resources.Array.data[1]
+      value: 
+      objectReference: {fileID: 7525694030478256496, guid: 3f3aed0b312d0be4fbd922cf9be45660, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90ecaba07a2b944c3812dfe8e4532da5, type: 3}
 --- !u!4 &3518123437941880662 stripped
@@ -1164,6 +1196,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2059283683440892202, guid: c1a5392ed2d1942d0a0e9e12be5c6b46, type: 3}
+      propertyPath: resources.Array.data[0]
+      value: 
+      objectReference: {fileID: 6902770251269619980, guid: 8dab24a8ed8323c4ea366d4be4678e82, type: 3}
     - target: {fileID: 2059283683440892203, guid: c1a5392ed2d1942d0a0e9e12be5c6b46, type: 3}
       propertyPath: m_Name
       value: TreeResourceSpawner

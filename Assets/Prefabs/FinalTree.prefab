@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 6902770251269619980}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 17.41, y: 6.05, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -107,18 +107,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 6902770251269619980}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0607da0a650d7b940b3b8a41cb651a77, type: 3}
+  m_Script: {fileID: 11500000, guid: 9f831781e84433b4caeb3df1515cc38a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wasTriggered: 0
+  syncMode: 0
+  syncInterval: 0.1
   states:
   - {fileID: 4300000, guid: 1bb662af9618a4376920ee637d4a3339, type: 2}
   - {fileID: 4300002, guid: 998510ed2ef484d2d84e04cfbf10c00d, type: 3}
   skins:
   - {fileID: 2100000, guid: 2cc4f240233026e4289ba05ae66a2926, type: 2}
   - {fileID: 2100000, guid: 8d1484fb482d1a64ea2d0431afdb522c, type: 2}
-  state: 0
   finalState: 1
+  wasTriggered: 0
+  isMeat: 0
 --- !u!114 &5510802095938773664
 MonoBehaviour:
   m_ObjectHideFlags: 0

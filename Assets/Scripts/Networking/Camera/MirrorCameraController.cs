@@ -8,6 +8,7 @@ public class MirrorCameraController : NetworkBehaviour
 {
 
     public MirrorEnergy script;
+    
     public override void OnStartClient()
     {
         if(!isLocalPlayer) {
@@ -38,20 +39,35 @@ public class MirrorCameraController : NetworkBehaviour
             // Sets a flag that the player has died -> trigger UI for death
             Debug.Log("Player died");
 
-            // Animates the camera to go into bird's eye view
-            var playerCam = transform.Find("PlayerCinamachineTest");
-            var transposer = playerCam.GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineTransposer>();
-            transposer.m_FollowOffset = new Vector3(0, 10, -5);
-            // TODO Smooth out the transition between follow offsets 
-            // possibly with a series height changes with delays in between
-            // ideally lasting the same as the character death animation
-
-            // Switches to camera surveying game area
-            // TODO Animate the camera to circle around playing area
-            playerCam.GetComponent<CinemachineVirtualCamera>().enabled = false;
+            //perform camera transitions
+            Debug.Log("Start camera coroutine");
+            StartCoroutine(transitionCameras());
 
             // Prevents the update function from running endlessly after player death
             enabled = false;
+        }
+
+        IEnumerator transitionCameras(){
+            // Animates the camera to go into bird's eye view
+            var playerCam = transform.Find("PlayerCinamachineTest");
+            var transposer = playerCam.GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineTransposer>();
+
+            // manually smooths transition to bird's eye view
+            // possible alternate implementation: use another cinemachine camera instead of just
+            // adjusting the height of the current one, then can use cinemachine blend
+            float transitionTimeSec = 5f; //TODO: should set to be equal to death animation time
+            float fps = 120f;
+            float startY = 0f;
+            float finalY = 10f;
+
+            for(float currY = startY; currY < finalY; currY=currY+((finalY-startY)/(fps*transitionTimeSec))) {
+                transposer.m_FollowOffset = new Vector3(0, currY, -5);
+                yield return new WaitForSeconds(1f/fps);
+            }
+
+            // Turns off current camera, Automatically switches to camera surveying game area
+            playerCam.GetComponent<CinemachineVirtualCamera>().enabled = false;
+            Debug.Log("End camera coroutine");
         }
     }
 

@@ -14,7 +14,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/MergeTests/InteractionMirrorMerge.unity
     guid: 0feab4261ab5838448b75326b5c75087
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MergeTests/MainGameDRAFT 2.unity
     guid: 3544400341364954b8193e561dcd758f
+  - enabled: 1
+    path: Assets/Scenes/MergeTests/FullMerge2.unity
+    guid: e8a318bc298df634388209529487f4f8
   m_configObjects: {}

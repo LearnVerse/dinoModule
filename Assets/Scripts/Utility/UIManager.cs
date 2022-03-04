@@ -15,8 +15,9 @@ public class UIManager : NetworkBehaviour
 
     public override void OnStartClient() 
     {
-        SelectDino.GetComponent<Canvas>().enabled = true;
-
+        if(isLocalPlayer) {
+            SelectDino.GetComponent<Canvas>().enabled = true;
+        }
         // TODO: Disable player controls until selection is made
     }
 
@@ -27,26 +28,34 @@ public class UIManager : NetworkBehaviour
 
     public void BackButton()
     {
-        OutOfEnergy.GetComponent<Canvas>().enabled = false;
+        if(isLocalPlayer) {
+            OutOfEnergy.GetComponent<Canvas>().enabled = false;
+        }
     }
 
     public void SelectSteggy()
     {
-        SteggyModel.transform.GetChild(1).GetComponent<SkinnedMeshRenderer>().enabled = true;
+        if(isLocalPlayer) {
+            SteggyModel.transform.GetChild(1).GetComponent<SkinnedMeshRenderer>().enabled = true;
 
-        player.GetComponent<InteractControl>().isMeatEater = false;
-        player.GetComponent<AnimationController>().animator = SteggyModel.GetComponent<Animator>();
+            player.GetComponent<InteractControl>().isMeatEater = false;
+            player.GetComponent<AnimationController>().animator = SteggyModel.GetComponent<Animator>();
 
-        SelectDino.GetComponent<Canvas>().enabled = false;
+            SelectDino.GetComponent<Canvas>().enabled = false;  
+        }
+
+        
     }
 
     public void SelectRexxy()
     {
-        RexxyModel.transform.GetChild(1).GetComponent<SkinnedMeshRenderer>().enabled = true;
+        if(isLocalPlayer) {
+            RexxyModel.transform.GetChild(1).GetComponent<SkinnedMeshRenderer>().enabled = true;
 
-        player.GetComponent<InteractControl>().isMeatEater = true;
-        player.GetComponent<AnimationController>().animator = RexxyModel.GetComponent<Animator>();
+            player.GetComponent<InteractControl>().isMeatEater = true;
+            player.GetComponent<AnimationController>().animator = RexxyModel.GetComponent<Animator>();
 
-        SelectDino.GetComponent<Canvas>().enabled = false;
+            SelectDino.GetComponent<Canvas>().enabled = false;
+        }
     }
 }

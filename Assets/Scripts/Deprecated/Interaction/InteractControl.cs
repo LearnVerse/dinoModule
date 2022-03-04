@@ -81,7 +81,7 @@ public class InteractControl : NetworkBehaviour
             {
                 if(rc.transform.GetComponent<Interactable>())
                 {
-                    Interactable food = rc.transform.GetComponent<Interactable>().GetComponent<Interactable>();
+                    Interactable food = rc.transform.GetComponent<Interactable>();
                     bool check = food.wasTriggered;
                     if(check == false){
                         if (food.isMeat == isMeatEater){

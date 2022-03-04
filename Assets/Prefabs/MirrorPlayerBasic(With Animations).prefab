@@ -994,7 +994,8 @@ GameObject:
   - component: {fileID: 6912327527009631400}
   - component: {fileID: 1206629839475798932}
   - component: {fileID: 1827909314649047983}
-  - component: {fileID: 1638887554863264335}
+  - component: {fileID: 2716067567626097878}
+  - component: {fileID: 7689915199656058448}
   m_Layer: 6
   m_Name: MirrorPlayerBasic(With Animations)
   m_TagString: Player
@@ -1227,7 +1228,23 @@ MonoBehaviour:
   player: {fileID: 4788196013077867334}
   SteggyModel: {fileID: 1057396223294971128}
   RexxyModel: {fileID: 1685557470309294958}
---- !u!114 &1638887554863264335
+--- !u!114 &2716067567626097878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4788196013077867334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f6f3bf89aa97405989c802ba270f815, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  clientAuthority: 1
+  animator: {fileID: 1151913053571829676}
+--- !u!114 &7689915199656058448
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

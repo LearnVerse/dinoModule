@@ -958,6 +958,7 @@ GameObject:
   - component: {fileID: 3855510609640840679}
   - component: {fileID: 6912327527009631400}
   - component: {fileID: 1206629839475798932}
+  - component: {fileID: -6118975579456032812}
   m_Layer: 6
   m_Name: MirrorPlayerBasic(UI Fix Cinamachine)
   m_TagString: Player
@@ -1175,6 +1176,22 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   script: {fileID: 6912327527009631400}
+--- !u!114 &-6118975579456032812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4788196013077867334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f6f3bf89aa97405989c802ba270f815, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  clientAuthority: 1
+  animator: {fileID: 0}
 --- !u!1 &4788196013910340716
 GameObject:
   m_ObjectHideFlags: 0
@@ -1675,6 +1692,10 @@ PrefabInstance:
     - target: {fileID: 4481666708878130763, guid: 56ebee5f4cd32c540ac3b52213d8cdfa, type: 3}
       propertyPath: m_Name
       value: UIManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 8403938353999638488, guid: 56ebee5f4cd32c540ac3b52213d8cdfa, type: 3}
+      propertyPath: m_AssetId
+      value: f9ad4f949a23c4483b7ebeaa6c5f6d88
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56ebee5f4cd32c540ac3b52213d8cdfa, type: 3}

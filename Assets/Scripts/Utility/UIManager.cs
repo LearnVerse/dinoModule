@@ -35,6 +35,7 @@ public class UIManager : NetworkBehaviour
         SteggyModel.transform.GetChild(1).GetComponent<SkinnedMeshRenderer>().enabled = true;
 
         player.GetComponent<InteractControl>().isMeatEater = false;
+        player.GetComponent<NetworkAnimator>().animator = SteggyModel.GetComponent<Animator>();
         player.GetComponent<AnimationController>().animator = SteggyModel.GetComponent<Animator>();
 
         SelectDino.GetComponent<Canvas>().enabled = false;
@@ -45,6 +46,7 @@ public class UIManager : NetworkBehaviour
         RexxyModel.transform.GetChild(1).GetComponent<SkinnedMeshRenderer>().enabled = true;
 
         player.GetComponent<InteractControl>().isMeatEater = true;
+        player.GetComponent<NetworkAnimator>().animator = RexxyModel.GetComponent<Animator>();
         player.GetComponent<AnimationController>().animator = RexxyModel.GetComponent<Animator>();
 
         SelectDino.GetComponent<Canvas>().enabled = false;

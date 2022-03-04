@@ -16,9 +16,9 @@ public class NetworkManagerLV : NetworkManager
         Debug.Log("Server Stopped!");
     }
 
-    public override void OnClientConnect(NetworkConnection conn)
+    public override void OnServerConnect(NetworkConnection conn)
     {
-        Debug.Log("Connected to Server!");
+
     }
 
     public override void OnClientDisconnect(NetworkConnection conn)

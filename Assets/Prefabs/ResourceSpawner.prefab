@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resources:
-  - {fileID: 6902770251269619980, guid: 3ab55fd9a50620d4685de44ab6180b5a, type: 3}
-  - {fileID: 7525694030478256496, guid: 4b6c2d6ad6b938140a0ac4e8ae1d23d7, type: 3}
-  spawnRange: {x: 50, y: 50}
-  maxResources: 10
+  - {fileID: 6902770251269619980, guid: 8dab24a8ed8323c4ea366d4be4678e82, type: 3}
+  - {fileID: 7525694030478256496, guid: 3f3aed0b312d0be4fbd922cf9be45660, type: 3}
+  spawnRange: {x: 10, y: 10}
+  maxResources: 5

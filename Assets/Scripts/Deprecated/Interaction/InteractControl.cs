@@ -21,9 +21,11 @@ public class InteractControl : NetworkBehaviour
     [Client]
     public override void OnStartClient()
     {
-        var tempIcon = transform.Find("EatContextMenu");
+        var masterGroup = transform.Find("Canvases");
+
+        var tempIcon = masterGroup.Find("EatContextMenu");
         interactIcon = tempIcon.GetComponentInChildren<Canvas>();//sets the interactIcon's initial state to 'inactive' (invisible)
-        tempIcon = transform.Find("CantEatContextMenu");
+        tempIcon = masterGroup.Find("CantEatContextMenu");
         cantEatIcon = tempIcon.GetComponentInChildren<Canvas>();
         setIcon(player, true, false);
         setIcon(player, false, false);

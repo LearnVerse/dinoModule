@@ -18,6 +18,7 @@ public class MirrorEnergy : NetworkBehaviour {
     public bool isDead = false;
     private Vector3 _prevPosition;
     private Vector3 _currPosition;
+    private UIManager manager;
     public Vector3 prevPosition //stores previous position of the Dino
     {
         get{return _prevPosition;}
@@ -35,6 +36,8 @@ public class MirrorEnergy : NetworkBehaviour {
     // Start is called before the first frame update
     void Start()
     {
+        manager = GetComponent<UIManager>();
+
         fill.fillAmount = Normalise();
         amount.text = $"{currentValue}/{maxValue}";
         prevPosition = dino.transform.position; //this is meant to refer to the child of this component that has a transform component . . . work in progress
@@ -82,6 +85,12 @@ public class MirrorEnergy : NetworkBehaviour {
             ctrl.moveSpeed=0f;
             ctrl.rotateSpeed=0f;
             isDead = true;
+
+            // Activate the Out of Energy UI and disable the energy bar
+            manager.OutOfEnergy.GetComponent<Canvas>().enabled = true;
+            manager.EnergyBar.GetComponent<Canvas>().enabled = false;
+
+            GetComponent<AnimationController>().dead = true;
         }
     }
 

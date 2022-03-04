@@ -23,6 +23,17 @@ public class MirrorPlayerController : NetworkBehaviour
             inputX = Input.GetAxis("Horizontal");
             inputZ = Input.GetAxis("Vertical");
 
+            if(Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S)) {
+                Debug.Log("Walking");
+                GetComponent<AnimationController>().walking = true;
+            }
+            if(Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.S)) {
+                Debug.Log("Not walking");
+                GetComponent<AnimationController>().walking = false;
+            }
+            
+            
+
             MovePlayer();
         }
     }

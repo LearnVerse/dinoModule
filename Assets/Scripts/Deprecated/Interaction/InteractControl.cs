@@ -51,7 +51,7 @@ public class InteractControl : NetworkBehaviour
     [TargetRpc]
     public void OpenIcon(GameObject player, bool isInteractUI)
     {
-        Transform t = player.transform;
+        Transform t = player.transform.Find("Canvases");
         var temp = t;
         if(isInteractUI) temp = t.Find("EatContextMenu");
         else temp = t.Find("CantEatContextMenu");
@@ -62,7 +62,7 @@ public class InteractControl : NetworkBehaviour
     [TargetRpc]
     public void CloseIcon(GameObject player, bool isInteractUI)
     {
-        Transform t = player.transform;
+        Transform t = player.transform.Find("Canvases");
         var temp = t;
         if(isInteractUI) temp = t.Find("EatContextMenu");
         else temp = t.Find("CantEatContextMenu");
@@ -81,14 +81,14 @@ public class InteractControl : NetworkBehaviour
             {
                 if(rc.transform.GetComponent<Interactable>())
                 {
-                    Interactable food = rc.transform.GetComponent<Interactable>().GetComponent<Interactable>();
+                    Interactable food = rc.transform.GetComponent<Interactable>();
                     bool check = food.wasTriggered;
                     if(check == false){
                         if (food.isMeat == isMeatEater){
                             Debug.Log(food);
                             food.Interact();
                             Debug.Log($"after:{food}");
-                            en.Replenish_Energy();
+                            en.StartCoroutine(en.Replenish_Energy());
                         } 
                         else UnityEngine.Debug.Log("Can't Eat this!");                       
                     }

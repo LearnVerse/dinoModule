@@ -69,9 +69,27 @@ public class MirrorEnergy : NetworkBehaviour {
         }
     }
 
-    public void Replenish_Energy()
+    public IEnumerator Replenish_Energy()
     {
         Add(10);
+
+        float duration = 3.8f;
+
+        if(GetComponent<InteractControl>().isMeatEater) duration = 4.8f;
+        else duration = 3.8f;
+
+        // Trigger eating animation
+        float tempMove = ctrl.moveSpeed;
+        float tempRotate = ctrl.rotateSpeed;
+        ctrl.moveSpeed=0f;
+        ctrl.rotateSpeed=0f;
+        GetComponent<AnimationController>().eating = true;
+
+        yield return new WaitForSeconds(duration);
+
+        GetComponent<AnimationController>().eating = false;
+        ctrl.moveSpeed=tempMove;
+        ctrl.rotateSpeed=tempRotate;
     }
     
     public void Death()

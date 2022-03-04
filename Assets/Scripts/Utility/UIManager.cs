@@ -2,12 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Mirror;
 
-public class UIManager : MonoBehaviour
+public class UIManager : NetworkBehaviour
 {
     public Canvas OutOfEnergy;
     public Canvas SelectDino;
     public Canvas EnergyBar;
+    public GameObject player;
+    public GameObject SteggyModel;
+    public GameObject RexxyModel;
+
+    public override void OnStartClient() 
+    {
+        SelectDino.GetComponent<Canvas>().enabled = true;
+
+        // TODO: Disable player controls until selection is made
+    }
 
     public void TestButton()
     {
@@ -17,6 +28,25 @@ public class UIManager : MonoBehaviour
     public void BackButton()
     {
         OutOfEnergy.GetComponent<Canvas>().enabled = false;
+    }
+
+    public void SelectSteggy()
+    {
+        SteggyModel.transform.GetChild(1).GetComponent<SkinnedMeshRenderer>().enabled = true;
+
+        player.GetComponent<InteractControl>().isMeatEater = false;
+        player.GetComponent<AnimationController>().animator = SteggyModel.GetComponent<Animator>();
+
+        SelectDino.GetComponent<Canvas>().enabled = false;
+    }
+
+    public void SelectRexxy()
+    {
+        RexxyModel.transform.GetChild(1).GetComponent<SkinnedMeshRenderer>().enabled = true;
+
+        player.GetComponent<InteractControl>().isMeatEater = true;
+        player.GetComponent<AnimationController>().animator = RexxyModel.GetComponent<Animator>();
+
         SelectDino.GetComponent<Canvas>().enabled = false;
     }
 }

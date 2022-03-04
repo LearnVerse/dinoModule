@@ -89,6 +89,8 @@ public class MirrorEnergy : NetworkBehaviour {
             // Activate the Out of Energy UI and disable the energy bar
             manager.OutOfEnergy.GetComponent<Canvas>().enabled = true;
             manager.EnergyBar.GetComponent<Canvas>().enabled = false;
+
+            GetComponent<AnimationController>().dead = true;
         }
     }
 

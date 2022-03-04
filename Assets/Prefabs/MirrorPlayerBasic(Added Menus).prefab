@@ -755,7 +755,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1399294028698294581}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -69.99497, y: -98.0818, z: 102.498245}
+  m_LocalPosition: {x: -69.99497, y: -98.21, z: 102.498245}
   m_LocalScale: {x: 0.36846113, y: 0.36846113, z: 0.36846113}
   m_Children: []
   m_Father: {fileID: 7638964966262834235}
@@ -1090,7 +1090,7 @@ GameObject:
   - component: {fileID: 1206629839475798932}
   - component: {fileID: 1827909314649047983}
   m_Layer: 6
-  m_Name: MirrorPlayerBasic(Added Energy Screen)
+  m_Name: MirrorPlayerBasic(Added Menus)
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1264,7 +1264,7 @@ MonoBehaviour:
   cantEatIcon: {fileID: 7502829057993209195}
   radiusOfInfluence: 3
   en: {fileID: 6912327527009631400}
-  isMeatEater: 1
+  isMeatEater: 0
 --- !u!114 &6912327527009631400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1284,7 +1284,7 @@ MonoBehaviour:
   amount: {fileID: 917043527923858905}
   isDead: 0
   dino: {fileID: 4788196013077867334}
-  currentValue: 25
+  currentValue: 50
   maxValue: 100
 --- !u!114 &1206629839475798932
 MonoBehaviour:
@@ -1313,9 +1313,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 975e2e2bf0f68714183400535d0cecf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   OutOfEnergy: {fileID: 3445499127053017359}
   SelectDino: {fileID: 7262260435612672395}
   EnergyBar: {fileID: 1111904786798478564}
+  player: {fileID: 4788196013077867334}
 --- !u!1 &4788196013910340716
 GameObject:
   m_ObjectHideFlags: 0
@@ -1343,7 +1346,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4788196013910340716}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: -69.99497, y: -98.0518, z: 102.498245}
+  m_LocalPosition: {x: -69.99497, y: -98.18, z: 102.498245}
   m_LocalScale: {x: 41.145, y: 41.145, z: 41.145}
   m_Children: []
   m_Father: {fileID: 7638964966262834235}
@@ -1364,7 +1367,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4788196013910340716}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1900,18 +1903,18 @@ PrefabInstance:
     - target: {fileID: 2541540871366883466, guid: e49219f2487fdfa44956a727d7479016, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1827909314649047983}
     - target: {fileID: 2541540871366883466, guid: e49219f2487fdfa44956a727d7479016, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: TestButton
+      value: SelectSteggy
       objectReference: {fileID: 0}
     - target: {fileID: 2541540871536778820, guid: e49219f2487fdfa44956a727d7479016, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1827909314649047983}
     - target: {fileID: 2541540871536778820, guid: e49219f2487fdfa44956a727d7479016, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: TestButton
+      value: SelectRexxy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e49219f2487fdfa44956a727d7479016, type: 3}

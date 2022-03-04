@@ -68,7 +68,7 @@ public class MirrorCameraController : NetworkBehaviour
             }
 
             // Turns off current camera, Automatically switches to camera surveying game area
-            playerCam.GetComponent<CinemachineVirtualCamera>().enabled = false;
+            transform.Find("Camera").GetComponent<Camera>().enabled = false;
             Debug.Log("End camera coroutine");
         }
     }

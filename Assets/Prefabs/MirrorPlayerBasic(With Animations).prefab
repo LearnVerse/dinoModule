@@ -1190,7 +1190,7 @@ MonoBehaviour:
   amount: {fileID: 917043527923858905}
   isDead: 0
   dino: {fileID: 4788196013077867334}
-  currentValue: 100
+  currentValue: 10
   maxValue: 100
 --- !u!114 &1206629839475798932
 MonoBehaviour:

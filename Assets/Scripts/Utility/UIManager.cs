@@ -40,6 +40,9 @@ public class UIManager : NetworkBehaviour
 
             player.GetComponent<InteractControl>().isMeatEater = false;
             player.GetComponent<AnimationController>().animator = SteggyModel.GetComponent<Animator>();
+            player.GetComponent<NetworkAnimator>().animator = SteggyModel.GetComponent<Animator>();
+
+            player.GetComponent<NetworkIdentityLV>().CmdSendModelIdxToServer(0);
 
             SelectDino.GetComponent<Canvas>().enabled = false;  
         }
@@ -54,6 +57,9 @@ public class UIManager : NetworkBehaviour
 
             player.GetComponent<InteractControl>().isMeatEater = true;
             player.GetComponent<AnimationController>().animator = RexxyModel.GetComponent<Animator>();
+            player.GetComponent<NetworkAnimator>().animator = RexxyModel.GetComponent<Animator>();
+
+            player.GetComponent<NetworkIdentityLV>().CmdSendModelIdxToServer(1);
 
             SelectDino.GetComponent<Canvas>().enabled = false;
         }

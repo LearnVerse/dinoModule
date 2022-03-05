@@ -5,13 +5,19 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 0
+    path: Assets/Scenes/MergeTests/InteractionTest1.unity
+    guid: 6a6ae94ee93b4d84a897da6aaf89e57d
+  - enabled: 0
+    path: Assets/Scenes/MergeTests/InteractionTest2.unity
+    guid: d3d1332bfc4171a41922e6b9ef83d401
+  - enabled: 0
+    path: Assets/Scenes/MergeTests/InteractionMirrorMerge.unity
+    guid: 0feab4261ab5838448b75326b5c75087
+  - enabled: 0
+    path: Assets/Scenes/MergeTests/MainGameDRAFT 2.unity
+    guid: 3544400341364954b8193e561dcd758f
   - enabled: 1
-    path: Assets/Scenes/Loading.unity
-    guid: 2c913f9e1b1858f419db1354edb234f3
-  - enabled: 1
-    path: Assets/Scenes/Lobby.unity
-    guid: 9642261e7547a5a4eae225f6962e8680
-  - enabled: 1
-    path: Assets/Scenes/TestScene.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
+    path: Assets/Scenes/MergeTests/FullMerge2.unity
+    guid: e8a318bc298df634388209529487f4f8
   m_configObjects: {}

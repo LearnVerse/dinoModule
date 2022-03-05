@@ -13,8 +13,9 @@ public class NetworkIdentityLV : NetworkBehaviour
     GameObject PlayerPrefab;
 
     [Command]
-    void CmdSendModelIdxToServer(int idxToSend) 
+    public void CmdSendModelIdxToServer(int idxToSend) 
     {
+        modelIndex = idxToSend;
         RpcUpdatePlayerModel(idxToSend);
     }
 
@@ -22,11 +23,6 @@ public class NetworkIdentityLV : NetworkBehaviour
     void RpcUpdatePlayerModel(int idx)
     {
         dinos.transform.GetChild(idx).transform.GetChild(1).GetComponent<SkinnedMeshRenderer>().enabled = true;
-    }
-
-    private void OnStartClient()
-    {
-        OnModelChange(0, modelIndex);
     }
 
     void OnModelChange(int oldValue, int newValue) 

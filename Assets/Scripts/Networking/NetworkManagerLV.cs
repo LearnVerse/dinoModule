@@ -18,11 +18,6 @@ public class NetworkManagerLV : NetworkManager
 
     public override void OnServerConnect(NetworkConnection conn)
     {
-
-    }
-
-    public override void OnClientDisconnect(NetworkConnection conn)
-    {
-        Debug.Log("Disconnected from Server!");
+        Debug.Log("Client connected");
     }
 }

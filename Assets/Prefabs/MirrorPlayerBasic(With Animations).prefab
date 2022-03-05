@@ -970,7 +970,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.7
+  m_Radius: 1.64
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
@@ -996,6 +996,7 @@ GameObject:
   - component: {fileID: 1827909314649047983}
   - component: {fileID: 1638887554863264335}
   - component: {fileID: 6391311936231007799}
+  - component: {fileID: 2081606556982573041}
   m_Layer: 6
   m_Name: MirrorPlayerBasic(With Animations)
   m_TagString: Player
@@ -1033,8 +1034,8 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 2
-  m_Radius: 0.5
+  m_Height: 2.54
+  m_Radius: 1.62
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
@@ -1101,10 +1102,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 1
+  m_Radius: 1.62
+  m_Height: 1.06
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: -0.03, z: 0}
 --- !u!54 &852196511472895213
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1262,6 +1263,24 @@ MonoBehaviour:
   syncInterval: 0.1
   clientAuthority: 1
   animator: {fileID: 1151913053571829676}
+--- !u!114 &2081606556982573041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4788196013077867334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19e325b483aff714b948ad2e7ca89d72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  modelIndex: 0
+  dinos: {fileID: 7690859070435790968}
+  name: Player
+  PlayerPrefab: {fileID: 4788196013077867334}
 --- !u!1 &6073043552082590812
 GameObject:
   m_ObjectHideFlags: 0

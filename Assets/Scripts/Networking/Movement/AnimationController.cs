@@ -5,10 +5,11 @@ using Mirror;
 public class AnimationController : NetworkBehaviour 
 {
     public Animator animator;
+
     public bool eating;
     public bool walking;
     public bool dead;
-        
+
     // Start is called before the first frame update
     public override void OnStartClient()
     {
@@ -17,8 +18,12 @@ public class AnimationController : NetworkBehaviour
         dead = false;
     }
 
-    // Update is called once per frame
     void Update()
+    {
+        UpdateAnim();
+    }
+
+    void UpdateAnim()
     {
         if(walking) {
             animator.SetBool("isWalking", true);

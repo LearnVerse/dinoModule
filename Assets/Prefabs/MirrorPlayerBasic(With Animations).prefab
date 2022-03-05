@@ -1020,7 +1020,7 @@ CharacterController:
   serializedVersion: 2
   m_Height: 2.54
   m_Radius: 1.62
-  m_SlopeLimit: 180
+  m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
@@ -1209,7 +1209,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
-  syncInterval: 0.1
+  syncInterval: 1
   clientAuthority: 1
   animator: {fileID: 1151913053571829676}
 --- !u!114 &2081606556982573041
@@ -1225,7 +1225,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
-  syncInterval: 0.1
+  syncInterval: 1
   modelIndex: 0
   dinos: {fileID: 7690859070435790968}
   PlayerPrefab: {fileID: 4788196013077867334}

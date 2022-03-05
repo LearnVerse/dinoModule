@@ -5,8 +5,8 @@ using Mirror;
 
 public class NetworkIdentityLV : NetworkBehaviour
 {
-    [SyncVar]
-    public int modelIndex = 0;
+    [SyncVar(hook="OnModelChange")]
+    public int modelIndex;
     public GameObject dinos;
 
     [SerializeField]
@@ -22,5 +22,15 @@ public class NetworkIdentityLV : NetworkBehaviour
     void RpcUpdatePlayerModel(int idx)
     {
         dinos.transform.GetChild(idx).transform.GetChild(1).GetComponent<SkinnedMeshRenderer>().enabled = true;
+    }
+
+    private void OnStartClient()
+    {
+        OnModelChange(0, modelIndex);
+    }
+
+    void OnModelChange(int oldValue, int newValue) 
+    {
+        dinos.transform.GetChild(newValue).transform.GetChild(1).GetComponent<SkinnedMeshRenderer>().enabled = true;
     }
 }

@@ -8,7 +8,13 @@ public class MirrorPlayerController : NetworkBehaviour
     public float rotateSpeed = 3f;
     private float inputX;
     private float inputZ;
-    private Vector3 v_movement;
+    public Vector3 velocity;
+    public Vector3 move;
+    public Transform groundCheck;
+    public float groundDistance = 0.4f;
+    public LayerMask groundMask;
+    public bool isGrounded;
+    public float gravity = -9.81f;
 
     void Start()
     {
@@ -31,8 +37,6 @@ public class MirrorPlayerController : NetworkBehaviour
                 Debug.Log("Not walking");
                 GetComponent<AnimationController>().walking = false;
             }
-            
-            
 
             MovePlayer();
         }
@@ -40,14 +44,27 @@ public class MirrorPlayerController : NetworkBehaviour
 
     private void MovePlayer()
     {
+        
         //input forward
-        v_movement = _charController.transform.forward * inputZ;
+        
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+
+        if(isGrounded && velocity.y < 0) 
+        {
+            velocity.y = -2f;
+        }
+
+        move = transform.forward * inputZ;
+
+        _charController.Move(move * moveSpeed * Time.deltaTime);
 
         // char rotate
         _charController.transform.Rotate(Vector3.up * inputX * (rotateSpeed * Time.deltaTime));
 
+        velocity.y += gravity * Time.deltaTime;
+
         // char move
-        _charController.Move(v_movement * moveSpeed * Time.deltaTime);
+        _charController.Move(velocity * Time.deltaTime);
   
     }
 }

@@ -118,8 +118,11 @@ MonoBehaviour:
   skins:
   - {fileID: 2100000, guid: ba51321a07e8b37478549e245a394a0d, type: 2}
   - {fileID: 2100000, guid: 7e05ef7409d694c74a16dec33c316bd7, type: 2}
+  mf: {fileID: 0}
+  mr: {fileID: 0}
+  state: 1
   finalState: 1
-  wasTriggered: 0
+  wasTriggered: 1
   isMeat: 1
 --- !u!114 &4743536296620555305
 MonoBehaviour:

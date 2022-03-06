@@ -4,7 +4,8 @@ using UnityEngine;
 using Mirror;
 
 public class Reset : NetworkBehaviour {
-    
+    public GameObject Foodbox;
+
     private void Update() {
         if(Input.GetKeyDown(KeyCode.L)) {
             resetFood();
@@ -20,7 +21,7 @@ public class Reset : NetworkBehaviour {
     public void RpcResetFood()
     {
         if(true) Debug.Log("made it here");
-        foreach(Transform foodt in transform){ //for each food item in this gameobject
+        foreach(Transform foodt in Foodbox.transform){ //for each food item in this gameobject
             Interactable food = foodt.gameObject.GetComponent<Interactable>(); 
             Debug.Log($"{food}");
             //reset all their states to initial

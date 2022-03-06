@@ -20,8 +20,8 @@ public class Interactable : NetworkBehaviour
     public List<Mesh> states;
     public List<Material> skins;
     
-    private MeshFilter mf;
-    private MeshRenderer mr;
+    public MeshFilter mf;
+    public MeshRenderer mr;
     [SyncVar(hook = nameof(changeState))]    
     public int state = 0;
     public int finalState = 1; //todo make public

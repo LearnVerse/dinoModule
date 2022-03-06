@@ -1199,7 +1199,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 1
-  modelIndex: 0
+  modelIndex: 2
   dinos: {fileID: 7690859070435790968}
   PlayerPrefab: {fileID: 4788196013077867334}
 --- !u!54 &7027349216516651511

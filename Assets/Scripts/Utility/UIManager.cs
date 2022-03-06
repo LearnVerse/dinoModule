@@ -42,14 +42,14 @@ public class UIManager : NetworkBehaviour
     }
 
     [Command]
-    public void SetAnimator(bool dino)
+    public void CmdSetAnimator(bool dino)
     {
         Debug.Log(dino);
-        SetNewAnimator(dino);
+        RpcSetNewAnimator(dino);
     }
 
     [ClientRpc]
-    public void SetNewAnimator(bool dino)
+    public void RpcSetNewAnimator(bool dino)
     {
         if(dino) {
             player.GetComponent<Animator>().runtimeAnimatorController = SteggyAnimator;
@@ -69,7 +69,7 @@ public class UIManager : NetworkBehaviour
 
             player.GetComponent<InteractControl>().isMeatEater = false;
             Debug.Log("Selecting Steggy");
-            SetAnimator(true);
+            CmdSetAnimator(true);
             Debug.Log("Selected Steggy");
 
             player.GetComponent<NetworkIdentityLV>().CmdSendModelIdxToServer(0);
@@ -86,7 +86,7 @@ public class UIManager : NetworkBehaviour
             player.GetComponent<InteractControl>().isMeatEater = true;
             
             Debug.Log("Selecting Rexxy");
-            SetAnimator(false);
+            CmdSetAnimator(false);
             Debug.Log("Selected Rexxy");
 
             player.GetComponent<NetworkIdentityLV>().CmdSendModelIdxToServer(1);

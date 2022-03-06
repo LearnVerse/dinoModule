@@ -16,7 +16,8 @@ public class MirrorPlayerController : NetworkBehaviour
     public bool isGrounded;
     public float gravity = -9.81f;
 
-    public Animator anim;
+    [SerializeField]
+    private Animator anim;
 
     void Start()
     {
@@ -26,22 +27,14 @@ public class MirrorPlayerController : NetworkBehaviour
 
     private void Update() 
     {
-        if(move.magnitude > .2f) {
-            Debug.Log("Walking");
-            // GetComponent<AnimationController>().walking = true;
-            anim.SetBool("isWalking", true);
-        } else {
-            Debug.Log("Not walking");
-            // GetComponent<AnimationController>().walking = false;
-            anim.SetBool("isWalking", false);
-        }
-
         if(isLocalPlayer)
         {
             inputX = Input.GetAxis("Horizontal");
             inputZ = Input.GetAxis("Vertical");
 
             MovePlayer();
+
+            anim.SetBool("isWalking", move.magnitude > .2f);
         }
     }
 

@@ -22,6 +22,7 @@ public class NetworkIdentityLV : NetworkBehaviour
     [ClientRpc]
     void RpcUpdatePlayerModel(int idx)
     {
+        modelIndex = idx;
         dinos.transform.GetChild(idx).transform.GetChild(1).GetComponent<SkinnedMeshRenderer>().enabled = true;
     }
 

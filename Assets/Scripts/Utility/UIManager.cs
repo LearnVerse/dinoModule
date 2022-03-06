@@ -13,13 +13,20 @@ public class UIManager : NetworkBehaviour
     public GameObject player;
     public GameObject SteggyModel;
     public GameObject RexxyModel;
+    [SerializeField]
+    public RuntimeAnimatorController RexxyAnimator;
+    [SerializeField]
+    public RuntimeAnimatorController SteggyAnimator;
+    [SerializeField]
+    public Avatar RexxyAvatar;
+    [SerializeField]
+    public Avatar SteggyAvatar;
 
     public override void OnStartClient() 
     {
         if(isLocalPlayer) {
             SelectDino.GetComponent<Canvas>().enabled = true;
         }
-        // TODO: Disable player controls until selection is made
     }
 
     public void TestButton()
@@ -34,28 +41,26 @@ public class UIManager : NetworkBehaviour
         }
     }
 
-    // [Command]
-    // public void SetAnimator(bool dino)
-    // {
-    //     Debug.Log(dino);
-    //     SetNewAnimator(dino);
-    // }
+    [Command]
+    public void SetAnimator(bool dino)
+    {
+        Debug.Log(dino);
+        SetNewAnimator(dino);
+    }
 
-    // [ClientRpc]
-    // public void SetNewAnimator(bool dino)
-    // {
-    //     if(dino) {
-    //         // player.GetComponent<AnimationController>().animator = SteggyModel.GetComponent<Animator>();
-    //         // player.GetComponent<NetworkAnimator>().animator = SteggyModel.GetComponent<Animator>();
-    //         // Debug.Log($"{player.GetComponent<NetworkAnimator>().animator}");
-    //         // Debug.Log($"{player.GetComponent<AnimationController>().animator}");
-    //     } else {
-    //         // player.GetComponent<AnimationController>().animator = RexxyModel.GetComponent<Animator>();
-    //         // player.GetComponent<NetworkAnimator>().animator = RexxyModel.GetComponent<Animator>();
-    //         // Debug.Log($"{player.GetComponent<NetworkAnimator>().animator}");
-    //         // Debug.Log($"{player.GetComponent<AnimationController>().animator}");
-    //     }        
-    // }
+    [ClientRpc]
+    public void SetNewAnimator(bool dino)
+    {
+        if(dino) {
+            player.GetComponent<Animator>().runtimeAnimatorController = SteggyAnimator;
+            player.GetComponent<Animator>().avatar = SteggyAvatar;
+            player.GetComponent<NetworkAnimator>().animator = player.GetComponent<Animator>();
+        } else {
+            player.GetComponent<Animator>().runtimeAnimatorController = RexxyAnimator;
+            player.GetComponent<Animator>().avatar = RexxyAvatar;
+            player.GetComponent<NetworkAnimator>().animator = player.GetComponent<Animator>();
+        }        
+    }
 
     public void SelectSteggy()
     {
@@ -64,7 +69,7 @@ public class UIManager : NetworkBehaviour
 
             player.GetComponent<InteractControl>().isMeatEater = false;
             Debug.Log("Selecting Steggy");
-            // SetAnimator(true);
+            SetAnimator(true);
             Debug.Log("Selected Steggy");
 
             player.GetComponent<NetworkIdentityLV>().CmdSendModelIdxToServer(0);
@@ -81,7 +86,7 @@ public class UIManager : NetworkBehaviour
             player.GetComponent<InteractControl>().isMeatEater = true;
             
             Debug.Log("Selecting Rexxy");
-            // SetAnimator(false);
+            SetAnimator(false);
             Debug.Log("Selected Rexxy");
 
             player.GetComponent<NetworkIdentityLV>().CmdSendModelIdxToServer(1);
@@ -89,4 +94,6 @@ public class UIManager : NetworkBehaviour
             SelectDino.GetComponent<Canvas>().enabled = false;
         }
     }
+
+    
 }

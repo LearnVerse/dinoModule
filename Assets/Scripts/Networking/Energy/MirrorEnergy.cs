@@ -72,31 +72,34 @@ public class MirrorEnergy : NetworkBehaviour {
 
     public IEnumerator Replenish_Energy()
     {
-        Add(10);
+        if(isLocalPlayer){
+            Add(10);
 
-        float duration = 3.8f;
+            float duration = 3.8f;
 
-        if(GetComponent<InteractControl>().isMeatEater) duration = 4.8f;
-        else duration = 3.8f;
+            if(GetComponent<InteractControl>().isMeatEater) duration = 4.8f;
+            else duration = 3.8f;
 
-        // Trigger eating animation
-        float tempMove = ctrl.moveSpeed;
-        float tempRotate = ctrl.rotateSpeed;
-        ctrl.moveSpeed=0f;
-        ctrl.rotateSpeed=0f;
-        //GetComponent<AnimationController>().eating = true;
-        Eat();
-        yield return new WaitForSeconds(duration);
-
-        //GetComponent<AnimationController>().eating = false;
-        Eat();
-        ctrl.moveSpeed=tempMove;
-        ctrl.rotateSpeed=tempRotate;
+            // Trigger eating animation
+            anim.SetBool("isEating", true);  
+            float tempMove = ctrl.moveSpeed;
+            float tempRotate = ctrl.rotateSpeed;
+            ctrl.moveSpeed=0f;
+            ctrl.rotateSpeed=0f;
+        
+            yield return new WaitForSeconds(duration);
+            anim.SetBool("isEating", false);  
+            ctrl.moveSpeed=tempMove;
+            ctrl.rotateSpeed=tempRotate;
+        }
     }
-    [Command]
+
     public void Eat()
     {
-        anim.SetBool("isEating", !anim.GetBool("isEating"));
+        if(isLocalPlayer) {
+            anim.SetBool("isEating", !anim.GetBool("isEating"));
+        }
+        
         // RpcEat();
     }
     // [ClientRpc]

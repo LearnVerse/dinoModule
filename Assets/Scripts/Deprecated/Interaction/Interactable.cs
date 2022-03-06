@@ -28,8 +28,13 @@ public class Interactable : NetworkBehaviour
     public bool wasTriggered = false;
     public bool isMeat;
   
+    [Command]
+    public void Interact()
+    {
+        RpcInteract();
+    }
     [ClientRpc]
-    public void Interact() //creates an "eaten bush" prefab clone at the position of the "uneaten bush" and hides the uneaten bush
+    public void RpcInteract() //creates an "eaten bush" prefab clone at the position of the "uneaten bush" and hides the uneaten bush
     { 
         Debug.Log("reached interact");
         Debug.Log($"{state},{finalState}");

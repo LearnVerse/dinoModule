@@ -1122,7 +1122,8 @@ MonoBehaviour:
   cantEatIcon: {fileID: 7502829057993209195}
   radiusOfInfluence: 3
   en: {fileID: 6912327527009631400}
-  isMeatEater: 1
+  isMeatEater: 0
+  anim: {fileID: 8747285673559593342}
 --- !u!114 &6912327527009631400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1180,6 +1181,10 @@ MonoBehaviour:
   player: {fileID: 4788196013077867334}
   SteggyModel: {fileID: 1057396223294971128}
   RexxyModel: {fileID: 1685557470309294958}
+  RexxyAnimator: {fileID: 9100000, guid: d14872cab2533d746a6d0b82347a1123, type: 2}
+  SteggyAnimator: {fileID: 9100000, guid: f68db0b2230d9474280bc69a68c14879, type: 2}
+  RexxyAvatar: {fileID: 9000000, guid: 8e6dbe40e559a42d69f186662b85d647, type: 3}
+  SteggyAvatar: {fileID: 9000000, guid: a9ea051382b294d42ab6a457685038d4, type: 3}
 --- !u!114 &2081606556982573041
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1777,7 +1782,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 137333528626246302, guid: 9268f0d0e9612eb4999ba69d748ad274, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9268f0d0e9612eb4999ba69d748ad274, type: 3}

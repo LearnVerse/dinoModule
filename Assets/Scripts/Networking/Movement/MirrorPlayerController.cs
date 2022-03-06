@@ -19,12 +19,6 @@ public class MirrorPlayerController : NetworkBehaviour
     [SerializeField]
     private Animator anim;
 
-    void Start()
-    {
-        
-    }
-
-
     private void Update() 
     {
         if(isLocalPlayer)

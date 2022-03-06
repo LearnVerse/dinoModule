@@ -16,7 +16,10 @@ public class InteractControl : NetworkBehaviour
 
     public float radiusOfInfluence = 3f;
     public MirrorEnergy en;
+    [SyncVar(hook = nameof(SetEatingPref))]
     public bool isMeatEater;
+    [SerializeField]
+    private Animator anim;
 
     [Client]
     public override void OnStartClient()
@@ -30,15 +33,29 @@ public class InteractControl : NetworkBehaviour
         setIcon(player, true, false);
         setIcon(player, false, false);
     }
-    // Update is called once per frame
 
-    [Client]
-    void Update()
+    [Command]
+    void SetEatingPref(bool oldPref, bool newPref) 
+    {
+        isMeatEater = newPref;
+        RpcSetEatingPref(isMeatEater);
+    }
+
+    [ClientRpc]
+    public void RpcSetEatingPref(bool state)
+    {
+        isMeatEater = state;
+    }
+
+
+    // Update is called once per frame
+    private void Update()
     {
         //check for possible interaction and perform interaction on 'E' key press
         if(!hasAuthority){return; }
-        if(Input.GetKeyDown(KeyCode.E))
-            CheckInteraction();
+        if(Input.GetKeyDown(KeyCode.E)) {
+                CheckInteraction();
+        }
     }
 
     [Command]
@@ -59,6 +76,7 @@ public class InteractControl : NetworkBehaviour
         if(icon == null) UnityEngine.Debug.Log("icon not found");
         else icon.enabled = true;
     }
+
     [TargetRpc]
     public void CloseIcon(GameObject player, bool isInteractUI)
     {
@@ -71,7 +89,7 @@ public class InteractControl : NetworkBehaviour
         else icon.enabled = false;
     }
 
-    [Command]
+    
     private void CheckInteraction()
     {
         RaycastHit[] hits = Physics.SphereCastAll(transform.position,radiusOfInfluence,Vector3.forward,0f); //set public 3f "sphere of influence" around character
@@ -84,9 +102,9 @@ public class InteractControl : NetworkBehaviour
                     Interactable food = rc.transform.GetComponent<Interactable>();
                     bool check = food.wasTriggered;
                     if(check == false){
-                        if (food.isMeat == isMeatEater){
-                            Debug.Log(food);
-                            food.Interact();
+                        if (food.isMeat == isMeatEater){                                                      
+                            Debug.Log(food);//if eat > bool animation > send back to server food state
+                            food.Interact(); //<handles sending food state to server
                             Debug.Log($"after:{food}");
                             en.StartCoroutine(en.Replenish_Energy());
                         } 
@@ -98,6 +116,5 @@ public class InteractControl : NetworkBehaviour
                 }
             }
         }
-
     }
 }

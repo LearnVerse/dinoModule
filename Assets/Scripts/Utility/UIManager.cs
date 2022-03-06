@@ -6,7 +6,9 @@ using Mirror;
 
 public class UIManager : NetworkBehaviour
 {
-
+    public MirrorPlayerController ctrl;
+    float tempMove;
+    float tempRotate;
     public Canvas OutOfEnergy;
     public Canvas SelectDino;
     public Canvas EnergyBar;
@@ -26,6 +28,11 @@ public class UIManager : NetworkBehaviour
     {
         if(isLocalPlayer) {
             SelectDino.GetComponent<Canvas>().enabled = true;
+            ctrl.gravity = 0f;
+            tempMove = ctrl.moveSpeed;
+            tempRotate = ctrl.rotateSpeed;
+            ctrl.moveSpeed=0f;
+            ctrl.rotateSpeed=0f;
         }
     }
 
@@ -75,6 +82,10 @@ public class UIManager : NetworkBehaviour
             player.GetComponent<NetworkIdentityLV>().CmdSendModelIdxToServer(0);
 
             SelectDino.GetComponent<Canvas>().enabled = false;  
+            
+            ctrl.moveSpeed=tempMove;
+            ctrl.rotateSpeed=tempRotate;
+            ctrl.gravity = -9.81f;
         }        
     }
 
@@ -92,8 +103,10 @@ public class UIManager : NetworkBehaviour
             player.GetComponent<NetworkIdentityLV>().CmdSendModelIdxToServer(1);
 
             SelectDino.GetComponent<Canvas>().enabled = false;
+            
+            ctrl.moveSpeed=tempMove;
+            ctrl.rotateSpeed=tempRotate;
+            ctrl.gravity = -9.81f;
         }
-    }
-
-    
+    }    
 }

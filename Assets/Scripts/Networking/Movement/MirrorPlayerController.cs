@@ -14,7 +14,7 @@ public class MirrorPlayerController : NetworkBehaviour
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
     public bool isGrounded;
-    public float gravity = -9.81f;
+    public float gravity = 0f;
 
     [SerializeField]
     private Animator anim;

@@ -1,25 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
-public class PlayVideo : MonoBehaviour
+public class PlayVideo : NetworkBehaviour
 {
+    public GameObject videoCanvas;
     private UnityEngine.Video.VideoPlayer videoPlayer;
+    public Canvas video;
 
     // Start is called before the first frame update
     void Start()
     {
-        videoPlayer = GetComponent<UnityEngine.Video.VideoPlayer>();
+        videoPlayer = videoCanvas.GetComponentInChildren<UnityEngine.Video.VideoPlayer>();
         // video = gameObject.GetComponent<VideoPlayer>();
-        StartCoroutine(PlayThisVideoNow());
+        // StartCoroutine(PlayThisVideoNow());
 
     }
 
     // Update is called once per frame
-    public IEnumerator PlayThisVideoNow()
+    public void PlayThisVideoNow()
     {
-        yield return new WaitForSeconds(10f);
-        videoPlayer.Play();
+        if(isLocalPlayer) {
+            Debug.Log("Playing video");
+            StartCoroutine(AnimationPlayVideo());      
+        }
     }
 
+    IEnumerator AnimationPlayVideo() {
+        video.enabled = true; 
+        videoPlayer.Play();
+        yield return new WaitForSeconds(59f);
+        videoPlayer.Stop();
+        video.enabled = false;
+    }
 }

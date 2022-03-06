@@ -40,7 +40,7 @@ public class MirrorEnergy : NetworkBehaviour {
         manager = GetComponent<UIManager>();
 
         fill.fillAmount = Normalise();
-        amount.text = $"{currentValue}/{maxValue}";
+        amount.text = $"{currentValue}%";
         prevPosition = dino.transform.position; //this is meant to refer to the child of this component that has a transform component . . . work in progress
         // UnityEngine.Debug.Log("Started");
         StartCoroutine(MovingDrain());
@@ -56,7 +56,7 @@ public class MirrorEnergy : NetworkBehaviour {
     public void UpdateUI()
     {
         fill.fillAmount = Normalise();
-        amount.text = $"{currentValue}/{maxValue}";
+        amount.text = $"{currentValue}%";
     }
 
     private void InitMoveCheck()

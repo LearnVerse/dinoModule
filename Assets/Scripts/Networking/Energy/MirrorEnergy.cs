@@ -19,6 +19,7 @@ public class MirrorEnergy : NetworkBehaviour {
     private Vector3 _prevPosition;
     private Vector3 _currPosition;
     private UIManager manager;
+    public Animator anim;
     public Vector3 prevPosition //stores previous position of the Dino
     {
         get{return _prevPosition;}
@@ -83,14 +84,27 @@ public class MirrorEnergy : NetworkBehaviour {
         float tempRotate = ctrl.rotateSpeed;
         ctrl.moveSpeed=0f;
         ctrl.rotateSpeed=0f;
-        GetComponent<AnimationController>().eating = true;
-
+        //GetComponent<AnimationController>().eating = true;
+        Eat();
         yield return new WaitForSeconds(duration);
 
-        GetComponent<AnimationController>().eating = false;
+        //GetComponent<AnimationController>().eating = false;
+        Eat();
         ctrl.moveSpeed=tempMove;
         ctrl.rotateSpeed=tempRotate;
     }
+    [Command]
+    public void Eat()
+    {
+        anim.SetBool("isEating", !anim.GetBool("isEating"));
+        // RpcEat();
+    }
+    // [ClientRpc]
+    // public void RpcEat()
+    // {
+    //     anim.SetBool("isEating", !anim.GetBool("isEating"));
+    // }
+
     
     public void Death()
     {
@@ -110,7 +124,8 @@ public class MirrorEnergy : NetworkBehaviour {
                 manager.EnergyBar.GetComponent<Canvas>().enabled = false;
             }
 
-            GetComponent<AnimationController>().dead = true;
+            // GetComponent<AnimationController>().dead = true;
+            anim.SetBool("isDead", true);
         }
     }
 
@@ -130,6 +145,7 @@ public class MirrorEnergy : NetworkBehaviour {
             }
         }
     }
+    
     IEnumerator MovingDrain()
     {
         // UnityEngine.Debug.Log("entered moving drain");

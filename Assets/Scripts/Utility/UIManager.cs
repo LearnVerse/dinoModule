@@ -6,6 +6,7 @@ using Mirror;
 
 public class UIManager : NetworkBehaviour
 {
+
     public Canvas OutOfEnergy;
     public Canvas SelectDino;
     public Canvas EnergyBar;
@@ -33,28 +34,28 @@ public class UIManager : NetworkBehaviour
         }
     }
 
-    [Command]
-    public void SetAnimator(bool dino)
-    {
-        Debug.Log(dino);
-        SetNewAnimator(dino);
-    }
+    // [Command]
+    // public void SetAnimator(bool dino)
+    // {
+    //     Debug.Log(dino);
+    //     SetNewAnimator(dino);
+    // }
 
-    [ClientRpc]
-    public void SetNewAnimator(bool dino)
-    {
-        if(dino) {
-            player.GetComponent<AnimationController>().animator = SteggyModel.GetComponent<Animator>();
-            player.GetComponent<NetworkAnimator>().animator = SteggyModel.GetComponent<Animator>();
-            Debug.Log($"{player.GetComponent<NetworkAnimator>().animator}");
-            Debug.Log($"{player.GetComponent<AnimationController>().animator}");
-        } else {
-            player.GetComponent<AnimationController>().animator = RexxyModel.GetComponent<Animator>();
-            player.GetComponent<NetworkAnimator>().animator = RexxyModel.GetComponent<Animator>();
-            Debug.Log($"{player.GetComponent<NetworkAnimator>().animator}");
-            Debug.Log($"{player.GetComponent<AnimationController>().animator}");
-        }        
-    }
+    // [ClientRpc]
+    // public void SetNewAnimator(bool dino)
+    // {
+    //     if(dino) {
+    //         // player.GetComponent<AnimationController>().animator = SteggyModel.GetComponent<Animator>();
+    //         // player.GetComponent<NetworkAnimator>().animator = SteggyModel.GetComponent<Animator>();
+    //         // Debug.Log($"{player.GetComponent<NetworkAnimator>().animator}");
+    //         // Debug.Log($"{player.GetComponent<AnimationController>().animator}");
+    //     } else {
+    //         // player.GetComponent<AnimationController>().animator = RexxyModel.GetComponent<Animator>();
+    //         // player.GetComponent<NetworkAnimator>().animator = RexxyModel.GetComponent<Animator>();
+    //         // Debug.Log($"{player.GetComponent<NetworkAnimator>().animator}");
+    //         // Debug.Log($"{player.GetComponent<AnimationController>().animator}");
+    //     }        
+    // }
 
     public void SelectSteggy()
     {
@@ -63,7 +64,7 @@ public class UIManager : NetworkBehaviour
 
             player.GetComponent<InteractControl>().isMeatEater = false;
             Debug.Log("Selecting Steggy");
-            SetAnimator(true);
+            // SetAnimator(true);
             Debug.Log("Selected Steggy");
 
             player.GetComponent<NetworkIdentityLV>().CmdSendModelIdxToServer(0);
@@ -80,7 +81,7 @@ public class UIManager : NetworkBehaviour
             player.GetComponent<InteractControl>().isMeatEater = true;
             
             Debug.Log("Selecting Rexxy");
-            SetAnimator(false);
+            // SetAnimator(false);
             Debug.Log("Selected Rexxy");
 
             player.GetComponent<NetworkIdentityLV>().CmdSendModelIdxToServer(1);

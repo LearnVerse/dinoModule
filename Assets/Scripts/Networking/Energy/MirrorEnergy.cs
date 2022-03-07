@@ -25,6 +25,10 @@ public class MirrorEnergy : NetworkBehaviour {
         get{return _prevPosition;}
         set{_prevPosition = value;}
     }    
+    public AudioSource dyingSound;
+    public AudioSource eatingSound;
+    public AudioSource backgroundSound;
+
     public Vector3 currPosition //stores current position of the Dino
     {
         get{return _currPosition;}
@@ -38,7 +42,6 @@ public class MirrorEnergy : NetworkBehaviour {
     void Start()
     {
         manager = GetComponent<UIManager>();
-
         fill.fillAmount = Normalise();
         amount.text = $"{currentValue}%";
         prevPosition = dino.transform.position; //this is meant to refer to the child of this component that has a transform component . . . work in progress
@@ -81,7 +84,8 @@ public class MirrorEnergy : NetworkBehaviour {
             else duration = 3.8f;
 
             // Trigger eating animation
-            anim.SetBool("isEating", true);  
+            anim.SetBool("isEating", true);
+            eatingSound.Play();
             float tempMove = ctrl.moveSpeed;
             float tempRotate = ctrl.rotateSpeed;
             ctrl.moveSpeed=0f;
@@ -94,14 +98,15 @@ public class MirrorEnergy : NetworkBehaviour {
         }
     }
 
-    public void Eat()
-    {
-        if(isLocalPlayer) {
-            anim.SetBool("isEating", !anim.GetBool("isEating"));
-        }
+    // public void Eat()
+    // {
+    //     if(isLocalPlayer) {
+    //         anim.SetBool("isEating", !anim.GetBool("isEating"));
+            
+    //     }
         
-        // RpcEat();
-    }
+    //     // RpcEat();
+    // }
     // [ClientRpc]
     // public void RpcEat()
     // {
@@ -129,6 +134,8 @@ public class MirrorEnergy : NetworkBehaviour {
 
             // GetComponent<AnimationController>().dead = true;
             anim.SetBool("isDead", true);
+            dyingSound.Play();
+            backgroundSound.mute = true;
         }
     }
 

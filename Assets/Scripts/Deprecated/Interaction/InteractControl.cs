@@ -69,12 +69,21 @@ public class InteractControl : NetworkBehaviour
     public void OpenIcon(GameObject player, bool isInteractUI)
     {
         Transform t = player.transform.Find("Canvases");
-        var temp = t;
-        if(isInteractUI) temp = t.Find("EatContextMenu");
-        else temp = t.Find("CantEatContextMenu");
-        Canvas icon = temp.GetComponentInChildren<Canvas>();
-        if(icon == null) UnityEngine.Debug.Log("icon not found");
-        else icon.enabled = true;
+        var temp1 = t;
+        var temp2 = t;
+        if(isInteractUI){
+            temp1 = t.Find("EatContextMenu");
+            temp2 = t.Find("CantEatContextMenu");
+        } 
+        else{
+            temp1 = t.Find("CantEatContextMenu");
+            temp2 = t.Find("EatContextMenu");
+        }
+        Canvas icon1 = temp1.GetComponentInChildren<Canvas>();
+        Canvas icon2 = temp2.GetComponentInChildren<Canvas>();
+        if(icon1 == null) UnityEngine.Debug.Log("icon not found");
+        else if(icon2.enabled == true) return;
+        else icon1.enabled = true;
     }
 
     [TargetRpc]

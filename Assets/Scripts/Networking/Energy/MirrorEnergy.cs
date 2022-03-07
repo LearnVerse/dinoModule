@@ -36,14 +36,15 @@ public class MirrorEnergy : NetworkBehaviour {
     }
     public GameObject dino; //your dino 
 
-    public int currentValue, maxValue;
+    public float currentValue, maxValue;
 
     // Start is called before the first frame update
     void Start()
     {
         manager = GetComponent<UIManager>();
         fill.fillAmount = Normalise();
-        amount.text = $"{currentValue}%";
+        int showNum = (int)Mathf.Floor(currentValue);
+        amount.text = $"{showNum}%";
         prevPosition = dino.transform.position; //this is meant to refer to the child of this component that has a transform component . . . work in progress
         // UnityEngine.Debug.Log("Started");
         StartCoroutine(MovingDrain());
@@ -62,7 +63,8 @@ public class MirrorEnergy : NetworkBehaviour {
     public void UpdateUI()
     {
         fill.fillAmount = Normalise();
-        amount.text = $"{currentValue}%";
+        int showNum = (int)Mathf.Floor(currentValue);
+        amount.text = $"{showNum}%";
     }
 
     private void InitMoveCheck()
@@ -169,7 +171,8 @@ public class MirrorEnergy : NetworkBehaviour {
             yield return new WaitForSeconds(0.5f);
             if((prevPosition - currPosition).sqrMagnitude  > 0.001f){//if moved . . .
                 // UnityEngine.Debug.Log("is moving");
-                Sub(2);//trigger energy drain
+                // TODO: Balance Drain Value (should last at least a min)
+                Sub(1.5f);//trigger energy drain
                 if(currentValue>0){
                     yield return null;
                 }
@@ -184,7 +187,7 @@ public class MirrorEnergy : NetworkBehaviour {
             prevPosition = currPosition;
         }
     }
-    private void Sub(int val)
+    private void Sub(float val)
     {
         // currentValue = Mathf.Min(currentValue+val,maxValue);
         currentValue -= val;

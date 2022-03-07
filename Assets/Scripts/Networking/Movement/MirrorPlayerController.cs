@@ -14,13 +14,10 @@ public class MirrorPlayerController : NetworkBehaviour
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
     public bool isGrounded;
-    public float gravity = -9.81f;
+    public float gravity = 0f;
 
-    void Start()
-    {
-        
-    }
-
+    [SerializeField]
+    private Animator anim;
 
     private void Update() 
     {
@@ -29,16 +26,9 @@ public class MirrorPlayerController : NetworkBehaviour
             inputX = Input.GetAxis("Horizontal");
             inputZ = Input.GetAxis("Vertical");
 
-            if(Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S)) {
-                Debug.Log("Walking");
-                GetComponent<AnimationController>().walking = true;
-            }
-            if(Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.S)) {
-                Debug.Log("Not walking");
-                GetComponent<AnimationController>().walking = false;
-            }
-
             MovePlayer();
+
+            anim.SetBool("isWalking", move.magnitude > .2f);
         }
     }
 

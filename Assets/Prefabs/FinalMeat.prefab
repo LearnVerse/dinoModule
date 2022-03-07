@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 7525694030478256496}
   m_LocalRotation: {x: 0, y: 0.20056494, z: 0, w: 0.9796805}
   m_LocalPosition: {x: 10.39, y: 1.15, z: 12.79}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_LocalScale: {x: 0.7000001, y: 0.7, z: 0.7000001}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -120,9 +120,9 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 7e05ef7409d694c74a16dec33c316bd7, type: 2}
   mf: {fileID: 0}
   mr: {fileID: 0}
-  state: 1
+  state: 0
   finalState: 1
-  wasTriggered: 1
+  wasTriggered: 0
   isMeat: 1
 --- !u!114 &4743536296620555305
 MonoBehaviour:

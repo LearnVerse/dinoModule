@@ -420,6 +420,18 @@ PrefabInstance:
       propertyPath: sceneId
       value: 839663043
       objectReference: {fileID: 0}
+    - target: {fileID: 6224863095034601341, guid: 3f3aed0b312d0be4fbd922cf9be45660, type: 3}
+      propertyPath: state
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6224863095034601341, guid: 3f3aed0b312d0be4fbd922cf9be45660, type: 3}
+      propertyPath: isMeat
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6224863095034601341, guid: 3f3aed0b312d0be4fbd922cf9be45660, type: 3}
+      propertyPath: wasTriggered
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7525694030478256496, guid: 3f3aed0b312d0be4fbd922cf9be45660, type: 3}
       propertyPath: m_Name
       value: FinalMeat (1)
@@ -550,7 +562,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1941843733}
   m_Layer: 0
-  m_Name: Food
+  m_Name: FoodGroup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -636,14 +648,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3943141862367539992, guid: f3c223df910efcb4c8f83c6fd05a21bf, type: 3}
-      propertyPath: sceneId
-      value: 410536007
-      objectReference: {fileID: 0}
-    - target: {fileID: 4257866268538521650, guid: f3c223df910efcb4c8f83c6fd05a21bf, type: 3}
-      propertyPath: sceneId
-      value: 3487519482
-      objectReference: {fileID: 0}
+    - target: {fileID: 7557829101167928723, guid: f3c223df910efcb4c8f83c6fd05a21bf, type: 3}
+      propertyPath: Foodbox
+      value: 
+      objectReference: {fileID: 1941843732}
     - target: {fileID: 8605454751978759480, guid: f3c223df910efcb4c8f83c6fd05a21bf, type: 3}
       propertyPath: m_Name
       value: FoodManager

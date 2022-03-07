@@ -54,7 +54,7 @@ public class InteractControl : NetworkBehaviour
         //check for possible interaction and perform interaction on 'E' key press
         if(!hasAuthority){return; }
         if(Input.GetKeyDown(KeyCode.E)) {
-                CheckInteraction();
+            CheckInteraction();
         }
     }
 
@@ -89,7 +89,6 @@ public class InteractControl : NetworkBehaviour
         else icon.enabled = false;
     }
 
-    
     private void CheckInteraction()
     {
         RaycastHit[] hits = Physics.SphereCastAll(transform.position,radiusOfInfluence,Vector3.forward,0f); //set public 3f "sphere of influence" around character
@@ -104,8 +103,7 @@ public class InteractControl : NetworkBehaviour
                     if(check == false){
                         if (food.isMeat == isMeatEater){                                                      
                             Debug.Log(food);//if eat > bool animation > send back to server food state
-                            food.Interact(); //<handles sending food state to server
-                            Debug.Log($"after:{food}");
+                            food.CmdInteract(1); //<handles sending food state to server
                             en.StartCoroutine(en.Replenish_Energy());
                         } 
                         else UnityEngine.Debug.Log("Can't Eat this!");                       

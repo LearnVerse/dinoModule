@@ -51,7 +51,6 @@ public class UIManager : NetworkBehaviour
     [Command]
     public void CmdSetAnimator(bool dino)
     {
-        Debug.Log(dino);
         RpcSetNewAnimator(dino);
     }
 
@@ -75,10 +74,7 @@ public class UIManager : NetworkBehaviour
             SteggyModel.transform.GetChild(1).GetComponent<SkinnedMeshRenderer>().enabled = true;
 
             player.GetComponent<InteractControl>().isMeatEater = false;
-            Debug.Log("Selecting Steggy");
             CmdSetAnimator(true);
-            Debug.Log("Selected Steggy");
-
             player.GetComponent<NetworkIdentityLV>().CmdSendModelIdxToServer(0);
 
             SelectDino.GetComponent<Canvas>().enabled = false;  
@@ -95,11 +91,7 @@ public class UIManager : NetworkBehaviour
             RexxyModel.transform.GetChild(1).GetComponent<SkinnedMeshRenderer>().enabled = true;
 
             player.GetComponent<InteractControl>().isMeatEater = true;
-            
-            Debug.Log("Selecting Rexxy");
             CmdSetAnimator(false);
-            Debug.Log("Selected Rexxy");
-
             player.GetComponent<NetworkIdentityLV>().CmdSendModelIdxToServer(1);
 
             SelectDino.GetComponent<Canvas>().enabled = false;

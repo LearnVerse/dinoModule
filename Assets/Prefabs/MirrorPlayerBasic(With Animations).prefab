@@ -982,6 +982,7 @@ GameObject:
   - component: {fileID: 8747285673559593342}
   - component: {fileID: 7776188919557382057}
   - component: {fileID: 4684704518801593195}
+  - component: {fileID: 219221072598940086}
   m_Layer: 6
   m_Name: MirrorPlayerBasic(With Animations)
   m_TagString: Player
@@ -1118,7 +1119,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
-  syncInterval: 0.1
+  syncInterval: 0.75
   player: {fileID: 4788196013077867334}
   interactIcon: {fileID: 4723334176201418225}
   cantEatIcon: {fileID: 7502829057993209195}
@@ -1146,7 +1147,7 @@ MonoBehaviour:
   isDead: 0
   anim: {fileID: 8747285673559593342}
   dino: {fileID: 4788196013077867334}
-  currentValue: 20
+  currentValue: 100
   maxValue: 100
 --- !u!114 &1206629839475798932
 MonoBehaviour:
@@ -1294,6 +1295,20 @@ MonoBehaviour:
   syncInterval: 0.1
   videoCanvas: {fileID: 4697867911220187543}
   video: {fileID: 1556732487240590514}
+--- !u!136 &219221072598940086
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4788196013077867334}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 2.76
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6073043552082590812
 GameObject:
   m_ObjectHideFlags: 0
@@ -1730,6 +1745,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4846570793918966, guid: 83cf425b3d2f30b4d965aebc7fa28cb0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 137321621951196274, guid: 83cf425b3d2f30b4d965aebc7fa28cb0, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

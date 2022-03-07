@@ -22,37 +22,47 @@ public class Interactable : NetworkBehaviour
     
     public MeshFilter mf;
     public MeshRenderer mr;
+
     [SyncVar(hook = nameof(changeState))]    
     public int state = 0;
-    public int finalState = 1; //todo make public
+    public int finalState = 1;
+
+    [SyncVar]
     public bool wasTriggered = false;
     public bool isMeat;
-  
-    [Command]
-    public void Interact()
+
+    [Command(requiresAuthority=false)]
+    public void CmdInteract(int newState)
     {
-        RpcInteract();
+        Debug.Log("Calling CmdInteract");
+        if(state < finalState) {
+            state = newState;
+            if(state == finalState) wasTriggered = true;
+            mf.sharedMesh = states[state];
+            mr.material = skins[state];
+            RpcInteract(state);
+        }
     }
+
     [ClientRpc]
-    public void RpcInteract() //creates an "eaten bush" prefab clone at the position of the "uneaten bush" and hides the uneaten bush
+    public void RpcInteract(int newState)
     { 
-        Debug.Log("reached interact");
-        Debug.Log($"{state},{finalState}");
         if(state < finalState){
             Debug.Log("reached state logic");
-            changeState(state,state+1);
+            state = newState;
             if(state == finalState) wasTriggered = true;
             mf.sharedMesh = states[state];
             mr.material = skins[state];
         } 
-    }    
-    void changeState(int oldState, int newState){
-        Debug.Log($"{oldState},{newState}");
-        state = newState;
     }
-    // public void getInteract(){
-    //     Interact();
-    // }
+
+    private void changeState(int oldState, int newState){
+        state = newState;
+        if(state == finalState) wasTriggered = true;
+        mf.sharedMesh = states[state];
+        mr.material = skins[state];
+    }
+
     private void Start()
     {   
         mf = gameObject.GetComponent<MeshFilter>();
@@ -66,7 +76,6 @@ public class Interactable : NetworkBehaviour
             if(collision.CompareTag("Player"))
                 UnityEngine.Debug.Log("is a player");
                 InteractControl playerctrl = collision.GetComponent<InteractControl>(); 
-                if(playerctrl == null) UnityEngine.Debug.Log("player interact controller not found");
                 if(playerctrl.isMeatEater != isMeat) playerctrl.setIcon(playerctrl.player, false, true);
                 else playerctrl.setIcon(playerctrl.player, true, true);            
                 UnityEngine.Debug.Log("open interact icon");
@@ -85,7 +94,6 @@ public class Interactable : NetworkBehaviour
                 playerctrl.setIcon(playerctrl.player, true, false);
                 playerctrl.setIcon(playerctrl.player, false, false);
             }
-            UnityEngine.Debug.Log("close interact icon");
     }
 }
 

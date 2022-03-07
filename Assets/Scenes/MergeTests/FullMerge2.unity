@@ -420,18 +420,6 @@ PrefabInstance:
       propertyPath: sceneId
       value: 839663043
       objectReference: {fileID: 0}
-    - target: {fileID: 6224863095034601341, guid: 3f3aed0b312d0be4fbd922cf9be45660, type: 3}
-      propertyPath: state
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6224863095034601341, guid: 3f3aed0b312d0be4fbd922cf9be45660, type: 3}
-      propertyPath: isMeat
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6224863095034601341, guid: 3f3aed0b312d0be4fbd922cf9be45660, type: 3}
-      propertyPath: wasTriggered
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7525694030478256496, guid: 3f3aed0b312d0be4fbd922cf9be45660, type: 3}
       propertyPath: m_Name
       value: FinalMeat (1)
@@ -439,14 +427,6 @@ PrefabInstance:
     - target: {fileID: 7668302041920005928, guid: 3f3aed0b312d0be4fbd922cf9be45660, type: 3}
       propertyPath: m_RootOrder
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7668302041920005928, guid: 3f3aed0b312d0be4fbd922cf9be45660, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.7000001
-      objectReference: {fileID: 0}
-    - target: {fileID: 7668302041920005928, guid: 3f3aed0b312d0be4fbd922cf9be45660, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.7000001
       objectReference: {fileID: 0}
     - target: {fileID: 7668302041920005928, guid: 3f3aed0b312d0be4fbd922cf9be45660, type: 3}
       propertyPath: m_LocalPosition.x

@@ -19,6 +19,7 @@ public class MirrorEnergy : NetworkBehaviour {
     private Vector3 _prevPosition;
     private Vector3 _currPosition;
     private UIManager manager;
+    public Animator anim;
     public Vector3 prevPosition //stores previous position of the Dino
     {
         get{return _prevPosition;}
@@ -39,7 +40,7 @@ public class MirrorEnergy : NetworkBehaviour {
         manager = GetComponent<UIManager>();
 
         fill.fillAmount = Normalise();
-        amount.text = $"{currentValue}/{maxValue}";
+        amount.text = $"{currentValue}%";
         prevPosition = dino.transform.position; //this is meant to refer to the child of this component that has a transform component . . . work in progress
         // UnityEngine.Debug.Log("Started");
         StartCoroutine(MovingDrain());
@@ -55,7 +56,7 @@ public class MirrorEnergy : NetworkBehaviour {
     public void UpdateUI()
     {
         fill.fillAmount = Normalise();
-        amount.text = $"{currentValue}/{maxValue}";
+        amount.text = $"{currentValue}%";
     }
 
     private void InitMoveCheck()
@@ -71,26 +72,42 @@ public class MirrorEnergy : NetworkBehaviour {
 
     public IEnumerator Replenish_Energy()
     {
-        Add(10);
+        if(isLocalPlayer){
+            Add(10);
 
-        float duration = 3.8f;
+            float duration = 3.8f;
 
-        if(GetComponent<InteractControl>().isMeatEater) duration = 4.8f;
-        else duration = 3.8f;
+            if(GetComponent<InteractControl>().isMeatEater) duration = 4.8f;
+            else duration = 3.8f;
 
-        // Trigger eating animation
-        float tempMove = ctrl.moveSpeed;
-        float tempRotate = ctrl.rotateSpeed;
-        ctrl.moveSpeed=0f;
-        ctrl.rotateSpeed=0f;
-        GetComponent<AnimationController>().eating = true;
-
-        yield return new WaitForSeconds(duration);
-
-        GetComponent<AnimationController>().eating = false;
-        ctrl.moveSpeed=tempMove;
-        ctrl.rotateSpeed=tempRotate;
+            // Trigger eating animation
+            anim.SetBool("isEating", true);  
+            float tempMove = ctrl.moveSpeed;
+            float tempRotate = ctrl.rotateSpeed;
+            ctrl.moveSpeed=0f;
+            ctrl.rotateSpeed=0f;
+        
+            yield return new WaitForSeconds(duration);
+            anim.SetBool("isEating", false);  
+            ctrl.moveSpeed=tempMove;
+            ctrl.rotateSpeed=tempRotate;
+        }
     }
+
+    public void Eat()
+    {
+        if(isLocalPlayer) {
+            anim.SetBool("isEating", !anim.GetBool("isEating"));
+        }
+        
+        // RpcEat();
+    }
+    // [ClientRpc]
+    // public void RpcEat()
+    // {
+    //     anim.SetBool("isEating", !anim.GetBool("isEating"));
+    // }
+
     
     public void Death()
     {
@@ -110,7 +127,8 @@ public class MirrorEnergy : NetworkBehaviour {
                 manager.EnergyBar.GetComponent<Canvas>().enabled = false;
             }
 
-            GetComponent<AnimationController>().dead = true;
+            // GetComponent<AnimationController>().dead = true;
+            anim.SetBool("isDead", true);
         }
     }
 
@@ -130,6 +148,7 @@ public class MirrorEnergy : NetworkBehaviour {
             }
         }
     }
+    
     IEnumerator MovingDrain()
     {
         // UnityEngine.Debug.Log("entered moving drain");

@@ -6,19 +6,34 @@ using Mirror;
 
 public class UIManager : NetworkBehaviour
 {
+    public MirrorPlayerController ctrl;
+    float tempMove;
+    float tempRotate;
     public Canvas OutOfEnergy;
     public Canvas SelectDino;
     public Canvas EnergyBar;
     public GameObject player;
     public GameObject SteggyModel;
     public GameObject RexxyModel;
+    [SerializeField]
+    public RuntimeAnimatorController RexxyAnimator;
+    [SerializeField]
+    public RuntimeAnimatorController SteggyAnimator;
+    [SerializeField]
+    public Avatar RexxyAvatar;
+    [SerializeField]
+    public Avatar SteggyAvatar;
 
     public override void OnStartClient() 
     {
         if(isLocalPlayer) {
             SelectDino.GetComponent<Canvas>().enabled = true;
+            ctrl.gravity = 0f;
+            tempMove = ctrl.moveSpeed;
+            tempRotate = ctrl.rotateSpeed;
+            ctrl.moveSpeed=0f;
+            ctrl.rotateSpeed=0f;
         }
-        // TODO: Disable player controls until selection is made
     }
 
     public void TestButton()
@@ -34,25 +49,22 @@ public class UIManager : NetworkBehaviour
     }
 
     [Command]
-    public void SetAnimator(bool dino)
+    public void CmdSetAnimator(bool dino)
     {
-        Debug.Log(dino);
-        SetNewAnimator(dino);
+        RpcSetNewAnimator(dino);
     }
 
     [ClientRpc]
-    public void SetNewAnimator(bool dino)
+    public void RpcSetNewAnimator(bool dino)
     {
         if(dino) {
-            player.GetComponent<AnimationController>().animator = SteggyModel.GetComponent<Animator>();
-            player.GetComponent<NetworkAnimator>().animator = SteggyModel.GetComponent<Animator>();
-            Debug.Log($"{player.GetComponent<NetworkAnimator>().animator}");
-            Debug.Log($"{player.GetComponent<AnimationController>().animator}");
+            player.GetComponent<Animator>().runtimeAnimatorController = SteggyAnimator;
+            player.GetComponent<Animator>().avatar = SteggyAvatar;
+            player.GetComponent<NetworkAnimator>().animator = player.GetComponent<Animator>();
         } else {
-            player.GetComponent<AnimationController>().animator = RexxyModel.GetComponent<Animator>();
-            player.GetComponent<NetworkAnimator>().animator = RexxyModel.GetComponent<Animator>();
-            Debug.Log($"{player.GetComponent<NetworkAnimator>().animator}");
-            Debug.Log($"{player.GetComponent<AnimationController>().animator}");
+            player.GetComponent<Animator>().runtimeAnimatorController = RexxyAnimator;
+            player.GetComponent<Animator>().avatar = RexxyAvatar;
+            player.GetComponent<NetworkAnimator>().animator = player.GetComponent<Animator>();
         }        
     }
 
@@ -62,13 +74,14 @@ public class UIManager : NetworkBehaviour
             SteggyModel.transform.GetChild(1).GetComponent<SkinnedMeshRenderer>().enabled = true;
 
             player.GetComponent<InteractControl>().isMeatEater = false;
-            Debug.Log("Selecting Steggy");
-            SetAnimator(true);
-            Debug.Log("Selected Steggy");
-
+            CmdSetAnimator(true);
             player.GetComponent<NetworkIdentityLV>().CmdSendModelIdxToServer(0);
 
             SelectDino.GetComponent<Canvas>().enabled = false;  
+            
+            ctrl.moveSpeed=tempMove;
+            ctrl.rotateSpeed=tempRotate;
+            ctrl.gravity = -9.81f;
         }        
     }
 
@@ -78,14 +91,14 @@ public class UIManager : NetworkBehaviour
             RexxyModel.transform.GetChild(1).GetComponent<SkinnedMeshRenderer>().enabled = true;
 
             player.GetComponent<InteractControl>().isMeatEater = true;
-            
-            Debug.Log("Selecting Rexxy");
-            SetAnimator(false);
-            Debug.Log("Selected Rexxy");
-
+            CmdSetAnimator(false);
             player.GetComponent<NetworkIdentityLV>().CmdSendModelIdxToServer(1);
 
             SelectDino.GetComponent<Canvas>().enabled = false;
+            
+            ctrl.moveSpeed=tempMove;
+            ctrl.rotateSpeed=tempRotate;
+            ctrl.gravity = -9.81f;
         }
-    }
+    }    
 }

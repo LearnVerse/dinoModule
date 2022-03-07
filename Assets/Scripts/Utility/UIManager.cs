@@ -23,6 +23,8 @@ public class UIManager : NetworkBehaviour
     public Avatar RexxyAvatar;
     [SerializeField]
     public Avatar SteggyAvatar;
+    [SyncVar(hook=nameof(SetDino))]
+    bool dinoBool;
 
     public override void OnStartClient() 
     {
@@ -36,6 +38,7 @@ public class UIManager : NetworkBehaviour
         }
     }
 
+    
     public void TestButton()
     {
         Debug.Log("Button pressed");
@@ -51,13 +54,15 @@ public class UIManager : NetworkBehaviour
     [Command]
     public void CmdSetAnimator(bool dino)
     {
+        dinoBool = dino;
         RpcSetNewAnimator(dino);
     }
 
     [ClientRpc]
     public void RpcSetNewAnimator(bool dino)
     {
-        if(dino) {
+        dinoBool = dino;
+        if(dinoBool) {
             player.GetComponent<Animator>().runtimeAnimatorController = SteggyAnimator;
             player.GetComponent<Animator>().avatar = SteggyAvatar;
             player.GetComponent<NetworkAnimator>().animator = player.GetComponent<Animator>();
@@ -68,6 +73,19 @@ public class UIManager : NetworkBehaviour
         }        
     }
 
+    void SetDino(bool oldDino, bool newDino)
+    {
+        dinoBool = newDino;
+        if(dinoBool) {
+            player.GetComponent<Animator>().runtimeAnimatorController = SteggyAnimator;
+            player.GetComponent<Animator>().avatar = SteggyAvatar;
+            player.GetComponent<NetworkAnimator>().animator = player.GetComponent<Animator>();
+        } else {
+            player.GetComponent<Animator>().runtimeAnimatorController = RexxyAnimator;
+            player.GetComponent<Animator>().avatar = RexxyAvatar;
+            player.GetComponent<NetworkAnimator>().animator = player.GetComponent<Animator>();
+        }
+    }
     public void SelectSteggy()
     {
         if(isLocalPlayer) {

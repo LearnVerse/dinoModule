@@ -8,7 +8,7 @@ public class Reset : NetworkBehaviour
     public GameObject Foodbox;
 
     private void Update() {
-        if(Input.GetKeyDown(KeyCode.L)) {
+        if(Input.GetKeyDown(KeyCode.F12)) {
             resetFood();
             Debug.Log("made it here1");
         }

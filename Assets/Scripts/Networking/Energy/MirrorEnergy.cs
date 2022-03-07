@@ -47,6 +47,9 @@ public class MirrorEnergy : NetworkBehaviour {
         prevPosition = dino.transform.position; //this is meant to refer to the child of this component that has a transform component . . . work in progress
         // UnityEngine.Debug.Log("Started");
         StartCoroutine(MovingDrain());
+        if(isLocalPlayer) {
+            backgroundSound.Play();
+        }
     }
 
     void Update()
@@ -130,12 +133,12 @@ public class MirrorEnergy : NetworkBehaviour {
             if (isLocalPlayer) {
                 manager.OutOfEnergy.GetComponent<Canvas>().enabled = true;
                 manager.EnergyBar.GetComponent<Canvas>().enabled = false;
+                dyingSound.Play();
+                backgroundSound.mute = true;
             }
 
             // GetComponent<AnimationController>().dead = true;
             anim.SetBool("isDead", true);
-            dyingSound.Play();
-            backgroundSound.mute = true;
         }
     }
 

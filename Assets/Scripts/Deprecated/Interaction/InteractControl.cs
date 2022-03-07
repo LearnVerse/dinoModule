@@ -58,7 +58,7 @@ public class InteractControl : NetworkBehaviour
         }
     }
 
-    [Command(requiresAuthority = true)]
+    [Command]
     public void setIcon(GameObject player, bool isInteractUI, bool state)
     {
         if(state) OpenIcon(player,isInteractUI);

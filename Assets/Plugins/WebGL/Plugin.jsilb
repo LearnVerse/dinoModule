@@ -1,0 +1,8 @@
+mergeInto(LibraryManager.library, {
+  Walking: function (isWalking) {
+    window.dispatchReactUnityEvent(
+      "Walking",
+      isWalking
+    );
+  },
+});

@@ -26,7 +26,7 @@ public class BuildScript
     public static void BuildLinuxServer()
     {
         BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
-        buildPlayerOptions.scenes = new[] { "Assets/Scenes/_MainGame/MainGame.unity" };
+        buildPlayerOptions.scenes = new[] { "Assets/Scenes/MergeTests/MainGameDRAFT_3.unity" };
         buildPlayerOptions.locationPathName = "Builds/Linux/Server/LearnVerseServer.x86_64";
         buildPlayerOptions.target = BuildTarget.StandaloneLinux64;
         buildPlayerOptions.options = BuildOptions.CompressWithLz4HC | BuildOptions.EnableHeadlessMode;
@@ -42,7 +42,7 @@ public class BuildScript
         Console.WriteLine("NOT CORRECTLY IMPLEMENTED!");
 
         BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
-        buildPlayerOptions.scenes = new[] { "Assets/Scenes/_MainGame/MainGame.unity" };
+        buildPlayerOptions.scenes = new[] { "Assets/Scenes/MergeTests/MainGameDRAFT_3.unity" };
         buildPlayerOptions.locationPathName = "Builds/WebGL/Client";
         buildPlayerOptions.target = BuildTarget.WebGL;
         buildPlayerOptions.options = BuildOptions.CompressWithLz4HC;
